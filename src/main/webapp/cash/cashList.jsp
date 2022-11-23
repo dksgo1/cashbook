@@ -7,6 +7,7 @@
 	if(session.getAttribute("loginMember") == null) {
 	// 로그인 되지 않은 상태
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		System.out.println("rksk");
 		return;
 	}
 
@@ -77,7 +78,16 @@
 <body>
 	<div>
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-		
+		<%
+			if(request.getParameter("msg") != null) {
+		%>
+			<div><%=request.getParameter("msg") %></div>
+		<%
+			}
+		%>
+		<%=loginMember.getMemberId()%>님
+		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">개인정보수정</a>
+		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">비밀번호수정</a>
 	</div>
 	<div>
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>

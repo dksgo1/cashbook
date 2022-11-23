@@ -20,7 +20,7 @@ public class MemberDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
-		String sql = "SELECT member_id memberId, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		String sql = "SELECT member_no memberNo, member_id memberId, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberPw());
@@ -28,6 +28,7 @@ public class MemberDao {
 		
 		if(rs.next()) {
 			resultMember = new Member();
+			resultMember.setMemberNo(rs.getInt("memberNo"));
 			resultMember.setMemberId(rs.getString("memberId"));
 			resultMember.setMemberName(rs.getString("memberName"));
 			System.out.println("rs문 실행여부");
@@ -50,21 +51,82 @@ public class MemberDao {
 		*/
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?, ?, ?, curdate(), curdate())";
+		String sql = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?, PASSWORD(?), ?, curdate(), curdate())";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberPw());
 		stmt.setString(3, paramMember.getMemberName());
-		ResultSet rs = stmt.executeQuery();
+		resultRow = stmt.executeUpdate();
 		
-		if(rs.next()) {
-			System.out.println("회원가입 성공");
-		} else {
-			System.out.println("회원가입 실패");
-		}
-			
-		
+		conn.close();
+		stmt.close();
 		return resultRow;
 	}
 	
+	// 회원정보 수정
+	public int updateMember(Member paramMember) throws Exception {
+		int resultRow = 0;
+		/*
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gdjj58", "root", "java1234");
+		*/
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		String sql = "UPDATE member set member_name=? WHERE member_id=? AND member_pw =PASSWORD(?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, paramMember.getMemberName());
+		stmt.setString(2, paramMember.getMemberId());
+		stmt.setString(3, paramMember.getMemberPw());
+		resultRow = stmt.executeUpdate();
+		
+		conn.close();
+		stmt.close();
+		return resultRow;
+	}
+
+	
+	
+	
+	
+	// 비밀번호 수정
+	public int updateMemberPw(Member paramMember, String newMemberPw) throws Exception {
+		int resultRow = 0;	
+		/*
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gdjj58", "root", "java1234");
+		*/
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT member_no memberNo, member_id memberId, member_pw memberPw FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, paramMember.getMemberId());
+		stmt.setString(2, paramMember.getMemberPw());
+		
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			sql ="UPDATE MEMBER SET member_pw = PASSWORD(?) WHERE member_id=?";
+			PreparedStatement updateStmt = conn.prepareStatement(sql);
+			updateStmt.setString(1, newMemberPw);
+			updateStmt.setString(2, paramMember.getMemberId());
+			
+			
+			resultRow = updateStmt.executeUpdate();
+			
+			if(resultRow == 0) {
+				System.out.println("수정실패");
+			} else {
+				System.out.println("수정성공");		
+			}
+			updateStmt.close();
+		} else {
+			System.out.println("현재 비밀번호가 틀립니다");
+		}
+		
+		rs.close();
+		stmt.close();
+		conn.close();
+		
+		return resultRow;
+	}
 }

@@ -75,8 +75,8 @@
 			<th>categoryName</th>
 			<th>cashPirce</th>
 			<th>cashMemo</th>
-			<th>수정</th><!-- request.getContextPath()/cash/deleteCash.jsp?cashNo= -->
-			<th>삭제</th><!-- request.getContextPath()/cash/updateCashForm.jsp?cashNo=  -->
+			<th>수정</th><!-- request.getContextPath()/cash/updateCash.jsp?cashNo= -->
+			<th>삭제</th><!-- request.getContextPath()/cash/deleteCashForm.jsp?cashNo=  -->
 		</tr>
 		<%
 			for(HashMap<String, Object> m : list) { 
@@ -86,8 +86,8 @@
 					<td><%=(String)m.get("categoryName")%></td>
 					<td><%=(Long)m.get("cashPrice")%>원</td>
 					<td><%=(String)m.get("cashMemo")%></td> 
-					<td><a href="">수정</a></td>
-					<td><a href="">삭제</a></td>
+					<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=">수정</a></td>
+					<td><a href="<%=request.getContextPath()%>/cash/deleteCashForm.jsp?cashNo=">삭제</a></td>
 				</tr>
 		<%
 			}

@@ -1,8 +1,12 @@
 package dao;
 import java.sql.*;
+import java.util.*;
+import java.net.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import util.*;	
+import util.*;
+import vo.*;
+import vo.Member;	
 public class CashDao {
 	
 	public ArrayList<HashMap<String, Object>> selectCashListByMonth(String memberId, int year, int month) throws Exception {
@@ -75,8 +79,40 @@ public class CashDao {
 	  
 		rs.close();
 		stmt.close();
+		
 		conn.close();
 		return list;
+	}
+
+	// updateCash
+	public int updateCash(Member paramMember, Cash paramCash, Category paramCategory) throws Exception {
+		int resultRow = 0;
+		/*
+		Class.forName("org.mariadb.jdbc.Driver");
+		Connection conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/gdjj58", "root", "java1234");
+		*/
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		String sql ="UPDATE cash c INNER JOIN category ct ON c.category_no = ct.category_no INNER JOIN member m ON c.member_id = m.member_id SET ct.category_kind=?, ct.category_name=?,  c.cash_price=?, c.cash_memo =? WHERE c.cash_no =? AND m.member_id=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, paramCategory.getCategoryKind());
+		stmt.setString(2, paramCategory.getCategoryName());
+		stmt.setLong(3, paramCash.getCashPrice());
+		stmt.setString(4, paramCash.getCashMemo());
+		stmt.setInt(5, paramCash.getCashNo());
+		stmt.setString(6, paramMember.getMemberId());
+		
+		resultRow = stmt.executeUpdate();
+		
+		if(resultRow == 1) {
+			System.out.println("수정성공");
+		} else {
+			System.out.println("수정실패");
+		}
+		
+		conn.close();
+		stmt.close();
+		return resultRow;
 	}
 			
 }
