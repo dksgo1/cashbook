@@ -85,7 +85,7 @@ public class CashDao {
 	}
 
 	// updateCash
-	public int updateCash(Member paramMember, Cash paramCash, Category paramCategory) throws Exception {
+	public int updateCash(int cashNo, int categoryNo, String cashDate, long cashPrice, String cashMemo) throws Exception {
 		int resultRow = 0;
 		/*
 		Class.forName("org.mariadb.jdbc.Driver");
@@ -93,14 +93,14 @@ public class CashDao {
 		*/
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql ="UPDATE cash c INNER JOIN category ct ON c.category_no = ct.category_no INNER JOIN member m ON c.member_id = m.member_id SET ct.category_kind=?, ct.category_name=?,  c.cash_price=?, c.cash_memo =? WHERE c.cash_no =? AND m.member_id=?";
+		String sql ="UPDATE cash SET category_no =?, cash_date =?, cash_price =?, cash_memo =?, updatedate = CURDATE() WHERE cash_no = ? ";
 		PreparedStatement stmt = conn.prepareStatement(sql);
-		stmt.setString(1, paramCategory.getCategoryKind());
-		stmt.setString(2, paramCategory.getCategoryName());
-		stmt.setLong(3, paramCash.getCashPrice());
-		stmt.setString(4, paramCash.getCashMemo());
-		stmt.setInt(5, paramCash.getCashNo());
-		stmt.setString(6, paramMember.getMemberId());
+		stmt.setInt(1, categoryNo);
+		stmt.setString(2, cashDate);
+		stmt.setLong(3, cashPrice);
+		stmt.setString(4, cashMemo);
+		stmt.setInt(5, cashNo);
+		
 		
 		resultRow = stmt.executeUpdate();
 		
@@ -114,5 +114,73 @@ public class CashDao {
 		stmt.close();
 		return resultRow;
 	}
-			
+	
+	public Cash selectUpdateCashData(int cashNo) throws Exception {
+		Cash cash = new Cash();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT cash_no cashNo, category_no categoryNo, cash_date cashDate, cash_price cashPrice, cash_memo cashMemo, updatedate FROM cash Where cash_no = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, cashNo);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			cash.setCashNo(rs.getInt("cashNo"));
+			cash.setCategroyNo(rs.getInt("categoryNo"));
+			cash.setCashDate(rs.getString("cashDate"));
+			cash.setCashPrice(rs.getLong("cashPrice"));
+			cash.setCashMemo(rs.getString("cashMemo"));
+			cash.setUpdatedate(rs.getString("updatedate"));
+		}
+		
+		return cash;
+	}
+
+	
+	
+	// insertCashAction
+	public int insertCash(Cash cash) throws Exception {
+		int row = 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql ="INSERT INTO cash (category_no, member_id, cash_date, cash_price, cash_memo, updatedate, createdate) VALUES(?,?,?,?,?, CURDATE(), CURDATE())";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, cash.getCategroyNo());
+		stmt.setString(2, cash.getMemberId());
+		stmt.setString(3, cash.getCashDate());
+		stmt.setLong(4, cash.getCashPrice());
+		stmt.setString(5, cash.getCashMemo());
+		
+		row = stmt.executeUpdate();
+				
+		dbUtil.close(null, stmt, conn);
+		return row;
+	}
+	
+	// deleteCashAction
+	public int deleteCash(int cashNo, String memberId) throws Exception {
+		int row = 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "DELETE FROM cash WHERE cash_no =? AND MemberId =?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, cashNo);
+		stmt.setString(2, memberId);
+		
+		row = stmt.executeUpdate();
+		if(row == 1) {
+			System.out.println("삭제성공");
+		} else {
+			System.out.println("삭제실패");
+		}
+		
+		return row;
+	}
+	
+	
 }

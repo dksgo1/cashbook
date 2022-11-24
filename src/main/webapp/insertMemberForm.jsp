@@ -1,13 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("utf-8"); // 인코딩
+	
+	int year = Integer.parseInt(request.getParameter("year"));
+	int month = Integer.parseInt(request.getParameter("month"));
+	int date = Integer.parseInt(request.getParameter("date"));
 %>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>insertMemberForm</title>
 </head>
 <body>
 	<h1>회원가입</h1>

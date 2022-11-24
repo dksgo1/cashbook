@@ -20,7 +20,7 @@ public class MemberDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
-		String sql = "SELECT member_no memberNo, member_id memberId, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
+		String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName FROM member WHERE member_id = ? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberPw());
@@ -42,7 +42,26 @@ public class MemberDao {
 		return resultMember;
 	}
 	
-	// 회원가입
+	// 회원가입 1) id중복확인 2) 회원가입
+	
+	// 반환 t: 이미존재, f: 사용가능
+	public boolean selectMemberIdCk(String memberId) throws Exception {
+		boolean result = false;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		String sql = "SELECT member_id FROM member WHERE member_id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, memberId);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			result = true;
+		}
+		dbUtil.close(rs, stmt, conn);
+		return result;
+	}
+	
+	
+	
 	public int insertMember(Member paramMember) throws Exception {
 		int resultRow = 0;
 		/*
@@ -51,15 +70,13 @@ public class MemberDao {
 		*/
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?, PASSWORD(?), ?, curdate(), curdate())";
+		String sql = "INSERT INTO member(member_id, member_pw, member_name, updatedate, createdate) VALUES(?, PASSWORD(?), ?, CURDATE(), CURDATE())";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, paramMember.getMemberId());
 		stmt.setString(2, paramMember.getMemberPw());
 		stmt.setString(3, paramMember.getMemberName());
 		resultRow = stmt.executeUpdate();
-		
-		conn.close();
-		stmt.close();
+		dbUtil.close(null, stmt, conn);
 		return resultRow;
 	}
 	

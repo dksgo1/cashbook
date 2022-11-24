@@ -7,7 +7,6 @@
 	if(session.getAttribute("loginMember") == null) {
 	// 로그인 되지 않은 상태
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
-		System.out.println("rksk");
 		return;
 	}
 
@@ -85,7 +84,7 @@
 		<%
 			}
 		%>
-		<%=loginMember.getMemberId()%>님
+		<%=loginMember.getMemberId()%>님 반갑습니다
 		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">개인정보수정</a>
 		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">비밀번호수정</a>
 	</div>
@@ -100,7 +99,13 @@
 	<div>
 	<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
 	</div>
-
+	<%
+		if (loginMember.getMemberLevel() > 0) {
+	%>
+			<a href="<%=request.getContextPath()%>/admin/adminMain.jsp">관리자 페이지</a>
+	<%
+		}
+	%>
 	<div>
 		<%=year%>년<%=month+1%>월
 	</div>

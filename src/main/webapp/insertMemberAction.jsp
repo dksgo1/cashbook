@@ -9,34 +9,33 @@
 
 	// 안전장치
 	if(request.getParameter("memberId")== null || request.getParameter("memberPw")== null || request.getParameter("memberId").equals("") || request.getParameter("memberPw").equals("")){
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
+		response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
 		return;
 	}
 	
-	// 1) 
-	Member insertMember = new Member();
-	insertMember.setMemberId(request.getParameter("memberId"));
-	insertMember.setMemberPw(request.getParameter("memberPw"));
-	insertMember.setMemberName(request.getParameter("memberName"));
+	// 1) Controller
+	request.setCharacterEncoding("utf-8"); // 인코딩
+	String memberId = request.getParameter("memberId");
+	String memberPw = request.getParameter("memberPw");
+	String memberName = request.getParameter("memberName");
 	//System.out.println("memberId");
 	//System.out.println("memberPw");
 	//System.out.println("memberName");
 	
+	Member member = new Member();
+	member.setMemberId(memberId);
+	member.setMemberPw(memberPw);
+	member.setMemberName(memberName);
 	
-	// 2)
-	// 분리된M(모델)을 호출
+	// 2) Model 호출
 	MemberDao memberDao = new MemberDao();
-	
-	int resultRow = memberDao.insertMember(insertMember);
-	
-	if(resultRow == 1) {
-		//System.out.println("회원가입 성공");
-		String msg = URLEncoder.encode("회원가입이 성공적으로 완료되었습니다 다시 로그인 해주세요", "utf8");
-		response.sendRedirect(request.getContextPath()+"/loginForm.jsp?msg="+msg);
-	} else {
-		//System.out.println("회원가입 실패");
+	if(memberDao.selectMemberIdCk(memberId)) {
+		System.out.println("중복아이디");
+		response.sendRedirect(request.getContextPath()+"/insertMemberForm.jsp");
+		return;
 	}
-	
-	
+	int row = memberDao.insertMember(member);
+	System.out.println(row + " <-- insertMemberAciton row");
+	response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 %>	
 	
