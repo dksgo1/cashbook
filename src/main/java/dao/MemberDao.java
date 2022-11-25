@@ -2,9 +2,74 @@ package dao;
 import vo.*;
 import util.DBUtil;
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class MemberDao {
+	//관리자 : 멤버레벨수정
+	public int updateMemberLevel(Member member) throws Exception {
+		return 0;
+	}
+	
+	// 관리자 : 멤버수
+	public int selectMemberCount() throws Exception {
+		int count = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT COUNT(*) cnt FROM member";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		
+		ResultSet rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			count = rs.getInt("cnt");
+		}
+		dbUtil.close(rs, stmt, conn);
+		
+		return count;
+	}
+	
+	// 관리자 멤버 리스트
+	public ArrayList<Member> selectMemberListByPage(int beginRow, int rowPerPage) throws Exception {
+		ArrayList<Member> list = new ArrayList<Member>();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT member_no memberNo, member_id memberId, member_level memberLevel, member_name memberName, updatedate, createdate FROM member ORDER BY createdate DESC LIMIT ?, ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
+		ResultSet rs = stmt.executeQuery();
+		
+		
+		while(rs.next()) {
+			Member m = new Member();
+			m.setMemberNo(rs.getInt("memberNo"));
+			m.setMemberId(rs.getString("memberId"));
+			m.setMemberLevel(rs.getInt("memberLevel"));
+			m.setMemberName(rs.getString("memberName"));
+			m.setUpdatedate(rs.getString("updatedate"));
+			m.setCreatedate(rs.getString("createdate"));
+			list.add(m);
+		}
+			
+		dbUtil.close(rs, stmt, conn);	
+		
+		return list;	
+	}
+	// 관리자 멤버 강퇴
+	public int deleteMemberByactin(Member member) throws Exception {
+		return 0;
+	}
+	
+	// 회원탈퇴
+	public int deleteMember(Member member) {
+		return 0;
+	}
+	
 	// 로그인
 	public Member login(Member paramMember) throws Exception {
 		Member resultMember = new Member();
@@ -31,6 +96,7 @@ public class MemberDao {
 			resultMember.setMemberNo(rs.getInt("memberNo"));
 			resultMember.setMemberId(rs.getString("memberId"));
 			resultMember.setMemberName(rs.getString("memberName"));
+			resultMember.setMemberLevel(rs.getInt("memberLevel"));
 			System.out.println("rs문 실행여부");
 			System.out.println("rs문 GET/"+resultMember.getMemberId());
 			System.out.println("rs문 GET2/"+resultMember.getMemberName());
