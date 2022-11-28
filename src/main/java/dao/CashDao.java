@@ -162,22 +162,16 @@ public class CashDao {
 	}
 	
 	// deleteCashAction
-	public int deleteCash(int cashNo, String memberId) throws Exception {
+	public int deleteCash(int cashNo) throws Exception {
 		int row = 0;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
-		String sql = "DELETE FROM cash WHERE cash_no =? AND MemberId =?";
+		String sql = "DELETE FROM cash WHERE cash_no =?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, cashNo);
-		stmt.setString(2, memberId);
 		
 		row = stmt.executeUpdate();
-		if(row == 1) {
-			System.out.println("삭제성공");
-		} else {
-			System.out.println("삭제실패");
-		}
 		
 		return row;
 	}

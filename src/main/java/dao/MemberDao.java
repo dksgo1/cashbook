@@ -6,9 +6,54 @@ import java.util.ArrayList;
 
 
 public class MemberDao {
-	//관리자 : 멤버레벨수정
-	public int updateMemberLevel(Member member) throws Exception {
-		return 0;
+	
+	// 멤버레벨수정 form
+	public Member selectMember(String memberId) throws Exception {
+		Member member = null;
+		
+		String sql = "SELECT member_id memberId, member_level memberLevel FROM member WHERE member_id = ?";
+		
+		DBUtil dbUtil =  new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, memberId);
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			member = new Member();
+			member.setMemberId(rs.getString("memberId"));
+			member.setMemberLevel(rs.getInt("memberLevel"));
+		}
+		dbUtil.close(rs, stmt, conn);
+		
+		return member;
+	}
+	
+	//관리자 : 멤버레벨수정 action
+	public int updateMemberLevel(int memberLevel, String memberId) throws Exception {
+		int row = 0;
+		
+		String sql = "UPDATE member SET member_level = ?, updatedate = CURDATE() WHERE member_id = ?";
+		
+		DBUtil dbUtil =  new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		
+		stmt.setInt(1, memberLevel);
+		stmt.setString(2, memberId);
+		row = stmt.executeUpdate();
+		
+		dbUtil.close(null, stmt, conn);
+		
+		return row;
 	}
 	
 	// 관리자 : 멤버수
@@ -61,8 +106,24 @@ public class MemberDao {
 		return list;	
 	}
 	// 관리자 멤버 강퇴
-	public int deleteMemberByactin(Member member) throws Exception {
-		return 0;
+	public int deleteMemberByactin(String memberId) throws Exception {
+		int row = 0;
+		
+		String sql = "DELETE FROM member WHERE member_id = ?";
+		
+		DBUtil dbUtil =  new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, memberId);
+		row = stmt.executeUpdate();
+		
+		dbUtil.close(null, stmt, conn);
+		
+		return row;
 	}
 	
 	// 회원탈퇴

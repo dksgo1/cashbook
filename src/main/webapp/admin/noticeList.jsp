@@ -4,13 +4,13 @@
 <%@ page import = "java.util.*"%>
 <%
 	// Controller
-	/* 이거떄문에 진행이 안됨ㅠ 나중에 해결하기..
-	Member loginMember = (Member)session.getAttribute("login");
+
+	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
-	*/
+	
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -38,6 +38,10 @@
 		<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
 		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
 	</ul>
+	<h1>공지목록</h1>
+	<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지 추가</a>
+	
+	
 	<div>
 		<!-- noticeList contents -->
 		<table border="1" >
@@ -52,11 +56,11 @@
 				for(Notice n : list) {
 			%>
 					<tr>
-						<td><%=n.getNoticeNo()%>
+						<td><%=n.getNoticeNo()%></td>
 						<td><%=n.getNoticeMemo()%></td>
 						<td><%=n.getCreatedate()%></td>
-						<td><a href="<%=request.getContextPath()%>/admin/noticeUpdateForm.jsp">수정</a></td>
-						<td>삭제</td>
+						<td><a href="<%=request.getContextPath()%>/admin/noticeUpdateForm.jsp?noticeNo=<%=n.getNoticeNo()%>">수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/admin/deleteNotice.jsp?noticeNo=<%=n.getNoticeNo()%>">삭제</a></td>
 					</tr>
 			<%
 				}
@@ -64,7 +68,7 @@
 		</table>
 		<!-- 페이징 -->
 		<div>
-			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
+			
 			<%
 				if(currentPage > 1) {
 			%>		

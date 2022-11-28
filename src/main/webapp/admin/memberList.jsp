@@ -4,13 +4,13 @@
 <%@ page import ="java.util.*" %>
 <%
 	// Controller
-	/* 이거땜에 진행이 안됨 ㅠ
-	Member loginMember = (Member)session.getAttribute("login");
+	
+	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
-	*/
+	
 	int currentPage = 1;
 	if(request.getParameter("currentPage") != null) {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -64,8 +64,8 @@
 						<td><%=m.getMemberName()%></td>
 						<td><%=m.getUpdatedate()%></td>
 						<td><%=m.getCreatedate()%></td>
-						<td>레벨수정</td>
-						<td>강제탈퇴</td>
+						<td><a href="<%=request.getContextPath()%>/admin/updateMemberLevelForm.jsp?memberId=<%=m.getMemberId()%>">레벨수정</a></td>
+						<td><a href="<%=request.getContextPath()%>/admin/deleteMember.jsp?memberId=<%=m.getMemberId()%>">강제탈퇴</a></td>
 					</tr>
 			<%
 				}

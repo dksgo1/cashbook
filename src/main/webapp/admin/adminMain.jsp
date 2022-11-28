@@ -2,13 +2,14 @@
 <%@ page import = "vo.*" %>
 <%
 	// Controller
-	/* 나중에 해결....
-	Member loginMember = (Member)session.getAttribute("login");
-	if(loginMember == null || loginMember.getMemberLevel() < 0) {
+	
+	Member loginMember = (Member)session.getAttribute("loginMember");
+
+	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
-	*/
+	
 	
 	// Model 호출
 	

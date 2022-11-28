@@ -100,7 +100,7 @@
 						int cashNo = (Integer)m.get("cashNo");
 					%>
 					<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month-1%>&date=<%=date%>">수정</a></td>
-					<td><a href="<%=request.getContextPath()%>/cash/deleteCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month-1%>&date=<%=date%>">삭제</a></td>
+					<td><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
 				</tr>
 		<%
 			}

@@ -2,10 +2,10 @@
 <%@ page import = "vo.*" %>
 <%@ page import = "dao.*"%>
 <%@ page import = "java.util.*"%>
-<%@ page import = "java.net.*" %>
-<%@ page import = "java.sql.*" %>
 <%
 	//Controller
+	request.setCharacterEncoding("UTF-8"); // 인코딩
+	
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
@@ -13,13 +13,20 @@
 	}
 	
 	int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
-	
+	String noticeMemo = request.getParameter("noticeMemo");
 	
 	// Model 호출
-
 	NoticeDao noticeDao = new NoticeDao();
-	Notice updateNotice = noticeDao.selectNoticeOne(noticeNo);
+	int row = noticeDao.updateNotice(noticeMemo, noticeNo);
+	
+	if(row == 1) {
+		System.out.println("수정성공");
+	} else {
+		System.out.println("수정실패");
+	}
+	response.sendRedirect(request.getContextPath()+"/admin/noticeList.jsp");
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,16 +34,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>공지 수정</h1>
-	<form action="<%=request.getContextPath()%>/admin/noticeUpdateAction.jsp" method="post">
-		<table>
-			<tr>
-				<td>공지 내용</td>
-				<td><textarea rows="5" cols="100" name="noticeMemo"><%=updateNotice.getNoticeMemo()%></textarea></td>
-			</tr>
-		</table>
-		<input type="hidden" name="noticeNo" value="<%=updateNotice.getNoticeNo()%>">
-		<button type="submit">수정</button>
-	</form>
+
 </body>
 </html>
