@@ -2,9 +2,7 @@
 <%@ page import = "vo.*" %>
 <%@ page import = "dao.*" %>
 <%@ page import = "java.util.*" %>
-<% 
-	
-	
+<%
 	// 1) C
 	request.setCharacterEncoding("UTF-8"); // 인코딩
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -13,23 +11,20 @@
 		return;
 	}
 	
-	int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
-	
+	int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+
 	// 2) Model 호출
-	CategoryDao categoryDao = new CategoryDao();
-	int row = categoryDao.deleteCategory(categoryNo);
+	CommentDao commentDao = new CommentDao();
+	int row = commentDao.deleteComment(commentNo);
 	
 	if(row == 1) {
 		System.out.println("삭제성공");
-		response.sendRedirect(request.getContextPath()+"/admin/categoryList.jsp");
+		response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp");
 		return;
 	} else {
 		System.out.println("삭제실패");
 	}
-	
-	
-%>
-
+ %>
 <!DOCTYPE html>
 <html>
 <head>

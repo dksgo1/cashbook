@@ -4,7 +4,7 @@
 <%@ page import = "vo.*" %> 
 <%@ page import = "java.net.*"%>
 <%
-	// Controller
+	//Controller
 	request.setCharacterEncoding("UTF-8"); // 인코딩
 	
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -14,35 +14,33 @@
 	}
 	
 	// null값이나 공백있으면 돌려보내기
-	if(request.getParameter("categoryNo") == null ||
-		request.getParameter("categoryNo").equals("") ||
-		request.getParameter("categoryName") == null ||
-		request.getParameter("categoryName").equals("") ||
-		request.getParameter("categoryKind") == null ||
-		request.getParameter("categoryKind").equals("")) {
-			response.sendRedirect(request.getContextPath()+"/admin/categoryList.jsp");
+	if(request.getParameter("commentNo") == null ||
+		request.getParameter("commentNo").equals("") ||
+		request.getParameter("commentMemo") == null ||
+		request.getParameter("commentMemo").equals("")) {
+			response.sendRedirect(request.getContextPath()+"/admin/helpList.jsp");
 			return;
 	}
-		
-	
-	int categoryNo = Integer.parseInt(request.getParameter("categoryNo"));
-	String categoryKind = request.getParameter("categoryKind");
-	String categoryName = request.getParameter("categoryName");
+
+	int commentNo = Integer.parseInt(request.getParameter("commentNo"));
+	String commentMemo = request.getParameter("commentMemo");
 	
 	// 2) Model 호출
-	CategoryDao categoryDao = new CategoryDao();
-	int row = categoryDao.updateCategoryName(categoryKind, categoryName, categoryNo);
+	CommentDao commentDao = new CommentDao();
+	int row = commentDao.updateComment(commentMemo, commentNo);
 	
 	if(row == 1) {
 		System.out.println("수정성공");
-		response.sendRedirect(request.getContextPath()+"/admin/categoryList.jsp");
+		response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp");
 		return;
 	} else {
 		System.out.println("수정실패");
 	}
-
-	
 %>
+
+
+
+
 <!DOCTYPE html>
 <html>
 <head>

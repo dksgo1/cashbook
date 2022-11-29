@@ -34,6 +34,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div>
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+	</div>
 	<!-- cash 입력 폼 -->
 	<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
 		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">

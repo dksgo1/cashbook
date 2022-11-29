@@ -96,7 +96,7 @@
 					<td><textarea name="cashMemo"><%=cashData.getCashMemo() %></textarea></td>
 				</tr>
 			</table>
-			<input type="hidden" name="cashNo" vcalue="<%=cashData.getCashNo()%>">
+			<input type="hidden" name="cashNo" value="<%=cashData.getCashNo()%>">
 			<button type="submit">수정</button>
 		</form>
 		<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month%>&date=<%=date%>">뒤로가기</a>

@@ -76,6 +76,9 @@
 </head>
 <body>
 	<div>
+		<jsp:include page="/inc/header.jsp"></jsp:include>
+	</div>
+	<div>
 		<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
 		<%
 			if(request.getParameter("msg") != null) {
@@ -85,8 +88,6 @@
 			}
 		%>
 		<%=loginMember.getMemberId()%>님 반갑습니다
-		<a href="<%=request.getContextPath()%>/updateMemberForm.jsp">개인정보수정</a>
-		<a href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">비밀번호수정</a>
 	</div>
 	<div>
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
@@ -94,10 +95,6 @@
 		<%=year%>년 <%=month+1%> 월
       
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
-	</div>
-	
-	<div>
-	<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
 	</div>
 	<%
 		if (loginMember.getMemberLevel() > 0) {
@@ -167,6 +164,9 @@
 				%>		
 			</tr>		
 		</table>
+		<div>
+			<jsp:include page="/inc/footer.jsp"></jsp:include>
+		</div>
 	</div>
 </body>
 </html>

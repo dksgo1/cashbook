@@ -9,11 +9,12 @@
 	request.setCharacterEncoding("UTF-8"); // 인코딩
 	
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	if(loginMember == null || loginMember.getMemberLevel() < 0) {
+	if(loginMember == null || loginMember.getMemberLevel() < 1) {
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");
 		return;
 	}
 	
+	// null 이나 공백들어오면 돌려보내기
 	if(request.getParameter("categoryKind") == null ||
 		request.getParameter("categoryKind").equals("") ||
 		request.getParameter("categoryName") == null ||

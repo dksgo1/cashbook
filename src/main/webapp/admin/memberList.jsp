@@ -35,11 +35,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
-	</ul>
+	<div>
+		<jsp:include page="/inc/adminHeader.jsp"></jsp:include>
+	</div>
 	<div>
 		<!-- memberList contents -->
 		<h1>멤버목록</h1>

@@ -26,13 +26,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<ul>
-		<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp">공지관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp">카테고리관리</a></li>
-		<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
-	</ul>
 	<div>
-		<a href="<%=request.getContextPath()%>/logout.jsp">로그아웃</a>
+		<jsp:include page="/inc/adminHeader.jsp"></jsp:include>
 	</div>
 	<div>
 		<!-- adminMain contents  최근공지 5개, 최근멤버 5명-->
