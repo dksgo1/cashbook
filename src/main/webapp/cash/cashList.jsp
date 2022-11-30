@@ -71,7 +71,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- base:css -->
+	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../regal/css/style.css">
 <title>cashList</title>
 </head>
 <body>
@@ -87,7 +94,7 @@
 		<%
 			}
 		%>
-		<%=loginMember.getMemberId()%>님 반갑습니다
+		<%=loginMember.getMemberName()%>님 반갑습니다
 	</div>
 	<div>
 		<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
@@ -104,68 +111,70 @@
 		}
 	%>
 	<div>
-		<%=year%>년<%=month+1%>월
+		<h3 class="text-center"><%=year%>년<%=month+1%>월</h3>
 	</div>
 	<div>
 		<!-- 달력 -->
-		<table border="1">
-			<tr>
-				<th>일</th>
-				<th>월</th>
-				<th>화</th>
-				<th>수</th>
-				<th>목</th>
-				<th>금</th>
-				<th>토</th>
-			</tr>
-			<tr>
-				<%
-					for(int i=1; i<=totalTd; i++) {
-				%>
-						<td>
-				<%
-							int date = i-beginBlank;
-							if(date > 0 && date <= lastDate) {			
-				%>
-								<div>
-									<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
-										<%=date%>
-									</a>
-								</div>
-								<div>
-									<%
-										for(HashMap<String, Object> m : list ) {
-											String cashDate = (String)(m.get("cashDate"));
-											if(Integer.parseInt(cashDate.substring(8)) == date) {
-									%>	
-													
-												[<%=(String)(m.get("categoryKind"))%>]
-												<%=(String)(m.get("categoryName"))%>
-												&nbsp;
-												<%=(Long)(m.get("cashPrice"))%>원
-												<br>		
-									<%
-									
+		<div class="table-responsive mt-3">	
+			<table class="table table-header-bg">
+				<tr>
+					<th>일</th>
+					<th>월</th>
+					<th>화</th>
+					<th>수</th>
+					<th>목</th>
+					<th>금</th>
+					<th>토</th>
+				</tr>
+				<tr>
+					<%
+						for(int i=1; i<=totalTd; i++) {
+					%>
+							<td>
+					<%
+								int date = i-beginBlank;
+								if(date > 0 && date <= lastDate) {			
+					%>
+									<div>
+										<a href="<%=request.getContextPath()%>/cash/cashDateList.jsp?year=<%=year%>&month=<%=month+1%>&date=<%=date%>">
+											<%=date%>
+										</a>
+									</div>
+									<div>
+										<%
+											for(HashMap<String, Object> m : list ) {
+												String cashDate = (String)(m.get("cashDate"));
+												if(Integer.parseInt(cashDate.substring(8)) == date) {
+										%>	
+														
+													[<%=(String)(m.get("categoryKind"))%>]
+													<%=(String)(m.get("categoryName"))%>
+													&nbsp;
+													<%=(Long)(m.get("cashPrice"))%>원
+													<br>		
+										<%
+										
+												}
 											}
-										}
-									%>
-								</div>
-				<%
+										%>
+									</div>
+					<%
+								}
+					%>		
+							</td>
+					<%
+							if(i%7 == 0 && i != totalTd) {
+					%>
+								</tr><tr> <!-- td7개 만들고 테이블 줄바꿈 -->
+					<%
 							}
-				%>		
-						</td>
-				<%
-						if(i%7 == 0 && i != totalTd) {
-				%>
-							</tr><tr> <!-- td7개 만들고 테이블 줄바꿈 -->
-				<%
 						}
-					}
-				%>		
-			</tr>		
-		</table>
-		<div>
-			<jsp:include page="/inc/footer.jsp"></jsp:include>
+					%>		
+				</tr>		
+			</table>
+			<div>
+				<jsp:include page="/inc/footer.jsp"></jsp:include>
+			</div>
 		</div>
 	</div>
 </body>

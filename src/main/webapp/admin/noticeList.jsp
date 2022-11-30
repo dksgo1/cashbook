@@ -29,18 +29,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- base:css -->
+	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../regal/css/style.css">
 <title>Insert title here</title>
 </head>
 <body>
 	<div>
 		<jsp:include page="/inc/adminHeader.jsp"></jsp:include>
 	</div>
-	<h1>공지목록</h1>
-	<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지 추가</a>
-	
-	
-	<div>
+	<div class="col-lg-3 mx-auto">
+		<h1>공지목록</h1>
+		<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지 추가</a>
 		<!-- noticeList contents -->
 		<table border="1" >
 			<tr>
@@ -84,7 +89,6 @@
 			%>
 			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=<%=lastPage%>">마지막</a>
 		</div>
-		
 	</div>
 </body>
 </html>

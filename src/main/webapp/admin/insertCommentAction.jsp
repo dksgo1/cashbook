@@ -20,7 +20,7 @@
 			response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp");
 			return;
 	}
-	String memberId = request.getParameter("memberId");
+	String memberId = loginMember.getMemberId();
 	String commentMemo = request.getParameter("commentMemo"); 
 	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
 	

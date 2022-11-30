@@ -28,13 +28,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- base:css -->
+	<link rel="stylesheet" href="regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="regal/vendors/base/vendor.bundle.base.css">
+	<!-- inject:css -->
+	<link rel="stylesheet" href="regal/css/style.css">
 <title>loginFrom</title>
+
 </head>
 <body>
+	<!-- 로그인 폼 -->
+	<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
+		<div class="container-scroller">
+			<div class="container-fluid page-body-wrapper full-page-wrapper">
+	    		<div class="content-wrapper d-flex align-items-center auth px-0">
+	    			<div class="row w-100 mx-0">
+	    				<div class="col-lg-4 mx-auto">
+							<div class="auth-form-light text-left py-5 px-4 px-sm-5">
+								<h4>안녕하세요</h4>
+								<h6 class="font-weight-light">계속 진행하시려면 로그인을 해주세요</h6>
+	              				<form class="pt-3">
+									<div class="form-group">
+										<input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Member Id" name="memberId">
+									</div>
+									<div class="form-group">
+										<input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" name="memberPw">
+									</div>
+									<div class="mt-3">
+										<button type="submit" class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn">로그인</button>
+									</div>
+									<div class="text-center mt-4 font-weight-light">
+										아이디가 없으신가요? <a href="<%=request.getContextPath()%>/insertMemberForm.jsp" class="text-primary">회원가입</a>
+	                				</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>  
+		</div>
+	</form>
 	<!-- 공지(5개)목록 페이징 -->
-	<div>
-		<table border="1">
+	<div> 
+		<table class="table">
 			<tr>
 				<th>공지내용</th>
 				<th>날짜</th>
@@ -74,28 +113,6 @@
 			%>
 			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막</a>
 		</div>
-	</div>
-	
-	
-	<h1>로그인</h1>
-	<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
-		<div>
-			ID:
-			<input type="text" name="memberId">
-		</div>
-		<div>
-			PW:
-			<input type="password" name="memberPw">
-		</div>
-		<button type="submit">로그인</button>
-		<a href="<%=request.getContextPath()%>/insertMemberForm.jsp">회원가입</a>
-		<%
-			if(request.getParameter("msg") != null) {
-		%>
-				<div><%=request.getParameter("msg") %></div>
-		<%
-			}
-		%>
-	</form>	
+	</div>	
 </body>
 </html>

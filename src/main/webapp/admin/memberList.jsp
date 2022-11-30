@@ -24,21 +24,28 @@
 	
 	int memberCount = memberDao.selectMemberCount(); // lastPage
 	int lastPage = (int)Math.ceil((double)memberCount / (double)rowPerPage);
-	// 최근공지 5개, 최근멤버 5명
+
 	
 	// View
 %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- base:css -->
+	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../regal/css/style.css">
 <title>Insert title here</title>
 </head>
 <body>
 	<div>
 		<jsp:include page="/inc/adminHeader.jsp"></jsp:include>
 	</div>
-	<div>
+	<div class="col-lg-3 mx-auto">
 		<!-- memberList contents -->
 		<h1>멤버목록</h1>
 		<table border="1">

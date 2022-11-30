@@ -24,11 +24,12 @@
 
 	int commentNo = Integer.parseInt(request.getParameter("commentNo"));
 	String commentMemo = request.getParameter("commentMemo");
+	String memberId = loginMember.getMemberId();
 	
 	// 2) Model 호출
 	CommentDao commentDao = new CommentDao();
-	int row = commentDao.updateComment(commentMemo, commentNo);
-	
+	int row = commentDao.updateComment(commentMemo, memberId, commentNo);
+	 
 	if(row == 1) {
 		System.out.println("수정성공");
 		response.sendRedirect(request.getContextPath()+"/admin/helpListAll.jsp");

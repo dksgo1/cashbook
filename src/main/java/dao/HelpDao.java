@@ -1,5 +1,6 @@
 package dao;
 import java.sql.Connection;
+import vo.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -8,6 +9,58 @@ import java.util.HashMap;
 import util.DBUtil;
 
 public class HelpDao {
+	// updateForm
+	public Help selectHelpOne(int helpNo) throws Exception {
+		Help help = null;
+		
+		String sql = "SELECT help_no helpNo, help_memo helpMemo, FROM help WHERE help_no = ?";
+		
+		DBUtil dbUtil =  new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		
+		stmt.setInt(1, helpNo);
+		rs = stmt.executeQuery();
+		
+		if(rs.next()) {
+			help = new Help();
+			help.setHelpNo(rs.getInt("helpNo"));
+			help.setHelpMemo(rs.getString("helpMemo"));
+		}
+		dbUtil.close(rs, stmt, conn);
+		
+		return help;
+	}
+	
+	// updateAction
+	
+	public int updateHelp(String helpMemo, String memberId, int helpNo) throws Exception {
+		int row = 0;
+		
+		String sql = "UPDATE help SET help_memo = ?, member_id = ?, updatedate = NOW() WHERE help_no =?";
+		
+		DBUtil dbUtil =  new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		
+		stmt.setString(1, helpMemo);
+		stmt.setString(2, memberId);
+		stmt.setInt(3, helpNo);
+		
+		row = stmt.executeUpdate();
+		
+		dbUtil.close(null, stmt, conn);
+		
+		return row;
+	}
+	
 	// helpList
 	public ArrayList<HashMap<String, Object>> selectHelpList(String memberId) throws Exception {
 		ArrayList<HashMap<String, Object>> list = new ArrayList<HashMap<String, Object>>();

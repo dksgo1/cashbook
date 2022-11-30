@@ -14,7 +14,7 @@
 	}
 	
 	int commentNo = Integer.parseInt(request.getParameter("commentNo"));
-	
+	String commentMemo = request.getParameter("commentMemo");
 	
 	// Model 호출
 	CommentDao commentDao = new CommentDao();
@@ -36,7 +36,7 @@
 			</tr>		
 			<tr>
 				<td>commentMemo</td>
-				<td><textarea rows="5" cols="100" name="commentMemo"></textarea></td>
+				<td><textarea rows="5" cols="100" name="commentMemo"><%=commentMemo%></textarea></td>
 			</tr>
 		</table>
 		<input type="hidden" name="commentNo" value="<%=updateComment.getCommentNo()%>">

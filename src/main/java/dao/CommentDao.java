@@ -56,10 +56,10 @@ public class CommentDao {
 		return comment;
 	}
 	// 수정 action
-	public int updateComment(String commentMemo, int commentNo) throws Exception {
+	public int updateComment(String commentMemo, String memberId, int commentNo) throws Exception {
 		int row = 0;
 		
-		String sql = "UPDATE comment SET comment_memo = ?, updatedate = NOW() WHERE comment_no =?";
+		String sql = "UPDATE comment SET comment_memo = ?, member_id = ?, updatedate = NOW() WHERE comment_no =?";
 		
 		DBUtil dbUtil =  new DBUtil();
 		Connection conn = null;
@@ -69,7 +69,8 @@ public class CommentDao {
 		stmt = conn.prepareStatement(sql);
 		
 		stmt.setString(1, commentMemo);
-		stmt.setInt(2, commentNo);
+		stmt.setString(2, memberId);
+		stmt.setInt(3, commentNo);
 		row = stmt.executeUpdate();
 		
 		dbUtil.close(null, stmt, conn);

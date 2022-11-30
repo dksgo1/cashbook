@@ -18,12 +18,7 @@
 	updateMember.setMemberId(request.getParameter("memberId"));
 	updateMember.setMemberPw(request.getParameter("memberPw"));
 	updateMember.setMemberName(request.getParameter("memberName"));
-	
 
-	//System.out.println("memberId");
-	//System.out.println("memberPw");
-	//System.out.println("memberName");
-	
 	// 2)
 	MemberDao memberDao = new MemberDao();
 	
@@ -32,6 +27,7 @@
 	
 	if(resultRow == 1) {
 		System.out.println("개인정보 수정 성공");
+		session.setAttribute("loginMember", updateMember);
 		String msg = URLEncoder.encode("개인정보가 수정되었습니다", "utf-8");
 		response.sendRedirect(request.getContextPath()+"/cash/cashList.jsp?msg="+msg);
 	} else {

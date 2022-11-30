@@ -9,7 +9,6 @@
 	}
 	
 	int helpNo = Integer.parseInt(request.getParameter("helpNo"));
-	String memberId = request.getParameter("memberId");
 	
 %>
 
@@ -31,7 +30,6 @@
 				<td><textarea rows="5" cols="100" name="commentMemo"></textarea></td>
 			</tr>
 		</table>
-		<input type="hidden" name="memberId" value="<%=memberId%>">
 		<button type="submit">답변등록</button>
 	</form>
 </body>
