@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
 	<!-- inject:css -->
 	<link rel="stylesheet" href="../regal/css/style.css">
+	<link rel="shortcut icon" href="../regal/images/favicon.png">
 <title>Insert title here</title>
 </head>
 <body>

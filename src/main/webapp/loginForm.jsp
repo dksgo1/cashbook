@@ -39,13 +39,56 @@
 <title>loginFrom</title>
 
 </head>
+
 <body>
+	<div class="row w-25 mx-auto"> 
+		<table class="table">
+			<tr>
+				<th>공지내용</th>
+				<th>날짜</th>
+			</tr>
+			<%
+				for(Notice n : list) {
+			%>
+					<tr>
+						<td><%=n.getNoticeMemo()%></td>
+						<td><%=n.getCreatedate()%></td>
+					</tr>
+			<%
+				}
+			%>	
+		</table>
+	</div>	
+		<!-- 페이징 -->
+		<div class="text-center">
+			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1">처음</a>			   
+	      	<%
+				if(currentPage > 1) {
+	      	%>
+					<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>">
+            			이전
+       				</a>
+	      	<%      
+	       	  	}    				
+	      	%>   
+	      		<span><%=currentPage%></span>
+ 			<%  
+				if(currentPage < lastPage) {
+			%>
+	            	<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>">
+	             	  다음
+	            	</a>
+			<%   
+				}	
+			%>
+			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막</a>
+		</div>	
 	<!-- 로그인 폼 -->
 	<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">
 		<div class="container-scroller">
 			<div class="container-fluid page-body-wrapper full-page-wrapper">
 	    		<div class="content-wrapper d-flex align-items-center auth px-0">
-	    			<div class="row w-100 mx-0">
+	    			<div class="row w-100 h-100 mx-0">
 	    				<div class="col-lg-4 mx-auto">
 							<div class="auth-form-light text-left py-5 px-4 px-sm-5">
 								<h4>안녕하세요</h4>
@@ -71,48 +114,5 @@
 			</div>  
 		</div>
 	</form>
-	<!-- 공지(5개)목록 페이징 -->
-	<div> 
-		<table class="table">
-			<tr>
-				<th>공지내용</th>
-				<th>날짜</th>
-			</tr>
-			<%
-				for(Notice n : list) {
-			%>
-					<tr>
-						<td><%=n.getNoticeMemo()%></td>
-						<td><%=n.getCreatedate()%></td>
-					</tr>
-			<%
-				}
-			%>	
-		</table>
-		<!-- 페이징 -->
-		<div>
-			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1">처음</a>			   
-	      	<%
-				if(currentPage > 1) {
-	      	%>
-					<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>">
-            			이전
-       				</a>
-	      	<%      
-	       	  	}    				
-	      	%>   
-	      		<span><%=currentPage%></span>
- 			<%  
-				if(currentPage < lastPage) {
-			%>
-	            	<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>">
-	             	  다음
-	            	</a>
-			<%   
-				}	
-			%>
-			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막</a>
-		</div>
-	</div>	
 </body>
 </html>
