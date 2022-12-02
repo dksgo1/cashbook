@@ -53,27 +53,32 @@
 		<!-- adminMain contents -->
 	<!-- 최근 공지 -->
 	<div class="d-flex justify-content-between">
-		<div>
-			<h4>최근 공지</h4>
-			<table class="table-secondary">
-				<tr>
-					<th>공지번호</th>
-					<th>공지내용</th>
-					<th>공지날짜</th>
-				</tr>
-				<%
-					for(Notice n : noticeList) {
-				%>
+		<div class="col-xl-4 grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+					<h4>최근 공지</h4>
+					<table class="table-secondary">
 						<tr>
-							<td><%=n.getNoticeNo()%></td>
-							<td><%=n.getNoticeMemo()%></td>
-							<td><%=n.getCreatedate()%></td>
+							<th>공지번호</th>
+							<th>공지내용</th>
+							<th>공지날짜</th>
 						</tr>
-				<%
-					}
-				%>
-			</table>
-		</div>	
+						<%
+							for(Notice n : noticeList) {
+						%>
+								<tr>
+									<td><%=n.getNoticeNo()%></td>
+									<td><%=n.getNoticeMemo()%></td>
+									<td><%=n.getCreatedate()%></td>
+								</tr>
+						<%
+							}
+						%>
+					</table>
+				</div>
+			</div>	
+		</div>		
+	</div>	
 			<!-- 최근 가입한 회원 -->	
 			<div>
 				<h4>최근 가입 회원</h4>
