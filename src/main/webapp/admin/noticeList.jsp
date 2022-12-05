@@ -71,7 +71,7 @@
 		</table>
 		<!-- 페이징 -->
 		<div>
-			
+			<a href="<%=request.getContextPath()%>/admin/noticeList.jsp?currentPage=1">처음</a>
 			<%
 				if(currentPage > 1) {
 			%>		

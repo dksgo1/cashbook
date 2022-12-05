@@ -52,81 +52,93 @@
 		<div class="container-fluid page-body-wrapper">
 			<div>
 				<jsp:include page="/inc/header2.jsp"></jsp:include>
-				<!-- adminMain contents -->
+			</div>	
+			<!-- adminMain contents -->	
 			<!-- 최근 공지 -->
-			<div class="d-flex justify-content-between">
-				<div class="col-xl-4 grid-margin stretch-card">
-					<div class="card">
-						<div class="card-body">
-							<h4>최근 공지</h4>
-							<table class="table-secondary">
-								<tr>
-									<th>공지번호</th>
-									<th>공지내용</th>
-									<th>공지날짜</th>
-								</tr>
-								<%
-									for(Notice n : noticeList) {
-								%>
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div class="d-flex justify-content-center">				
+						<div class="col-xl-4 d-flex grid-margin stretch-card">
+	               			<div class="card">
+	                 			<div class="card-body">
+									<h4>최근 공지</h4>
+									<table class="table">
 										<tr>
-											<td><%=n.getNoticeNo()%></td>
-											<td><%=n.getNoticeMemo()%></td>
-											<td><%=n.getCreatedate()%></td>
+											<th>공지번호</th>
+											<th>공지내용</th>
+											<th>공지날짜</th>
 										</tr>
-								<%
-									}
-								%>
-							</table>
+										<%
+											for(Notice n : noticeList) {
+										%>
+												<tr>
+													<td><%=n.getNoticeNo()%></td>
+													<td><%=n.getNoticeMemo()%></td>
+													<td><%=n.getCreatedate()%></td>
+												</tr>
+										<%
+											}
+										%>
+									</table>
+								</div>
+							</div>
+						</div>	
+							<!-- 최근 가입한 회원 -->
+						<div class="col-xl-4 d-flex grid-margin stretch-card">
+	          				<div class="card">
+	           					<div class="card-body">
+									<h4>최근 가입 회원</h4>
+									<table class="table">
+										<tr>
+											<th>아이디</th>
+											<th>이름</th>
+											<th>생성날짜</th>
+										</tr>
+										<%
+											for(Member m : memberList) {
+										%>
+												<tr>
+													<td><%=m.getMemberId()%></td>
+													<td><%=m.getMemberName()%></td>
+													<td><%=m.getCreatedate()%></td>
+												</tr>
+										<%
+											}
+										%>
+									</table>
+								</div>
+							</div>		
 						</div>
-					</div>	
-				</div>		
-			</div>	
-					<!-- 최근 가입한 회원 -->	
-					<div>
-						<h4>최근 가입 회원</h4>
-						<table class="table-secondary">
-							<tr>
-								<th>아이디</th>
-								<th>이름</th>
-								<th>생성날짜</th>
-							</tr>
-							<%
-								for(Member m : memberList) {
-							%>
-									<tr>
-										<td><%=m.getMemberId()%></td>
-										<td><%=m.getMemberName()%></td>
-										<td><%=m.getCreatedate()%></td>
-									</tr>
-							<%
-								}
-							%>
-						</table>
-					</div>	
-					<!-- 최근 문의 -->
-					<div>
-						<h4>최근 문의사항</h4>
-						<table class="table-secondary">
-							<tr>
-								<th>문의 내용</th>
-								<th>아이디</th>
-								<th>문의날짜</th>
-							</tr>
-							<%
-								for(HashMap<String, Object> h : helpList) {
-							%>
-									<tr>
-										<td><%=h.get("helpMemo")%></td>
-										<td><%=h.get("memberId")%></td>
-										<td><%=h.get("helpCreatedate")%></td>
-									</tr>	
-							<%
-								}
-							%>
-						</table>
-					</div>
-			</div>	
-		</div>
+						<div class="col-xl-4 d-flex grid-margin stretch-card">
+	       					<div class="card">
+	  							<div class="card-body">
+									<!-- 최근 문의 -->
+									<h4>최근 문의사항</h4>
+									<table class="table">
+										<tr>
+											<th>문의 내용</th>
+											<th>아이디</th>
+											<th>문의날짜</th>
+										</tr>
+										<%
+											for(HashMap<String, Object> h : helpList) {
+										%>
+												<tr>
+													<td><%=h.get("helpMemo")%></td>
+													<td><%=h.get("memberId")%></td>
+													<td><%=h.get("helpCreatedate")%></td>
+												</tr>	
+										<%
+											}
+										%>
+									</table>	
+								</div>
+							</div>
+						</div>
+					</div>			
+				</div>
+			</div>
+		</div>	
 	</div>		
 </body>
 </html>
