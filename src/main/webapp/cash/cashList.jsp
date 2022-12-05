@@ -86,17 +86,7 @@
 		<div class="container-fluid page-body-wrapper">
 			<div>
 				<jsp:include page="/inc/header2.jsp"></jsp:include>
-			</div>
-			<div>
-				<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
-				<%
-					if(request.getParameter("msg") != null) {
-				%>
-					<div><%=request.getParameter("msg") %></div>
-				<%
-					}
-				%>
-			</div>
+			</div>   
 			<div class="col-xl-9 grid-margin stretch-card mx-auto">
 				<div class="card">
 					<div class="card-body">
@@ -166,6 +156,16 @@
 				</div>
 			</div>
 		</div>	
+	</div>
+	<div>
+	<!-- 로그인 정보(세션 loginMember 변수) 출력 -->
+	<%
+		if(request.getParameter("msg") != null) {
+	%>
+			<div><%=request.getParameter("msg") %></div>
+	<%
+		}
+	%>
 	</div>		
 </body>
 </html>
