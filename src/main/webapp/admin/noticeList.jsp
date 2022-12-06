@@ -45,7 +45,7 @@
 	</div>
 	<div class="col-lg-3 mx-auto">
 		<h1>공지목록</h1>
-		<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지 추가</a>
+		<a href="<%=request.getContextPath()%>/admin/insertNoticeForm.jsp">공지 추가 </a>
 		<!-- noticeList contents -->
 		<table border="1" >
 			<tr>
