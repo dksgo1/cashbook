@@ -73,11 +73,9 @@
 <head>
     <meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- base:css -->
 	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
 	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
-	<!-- inject:css -->
 	<link rel="stylesheet" href="../regal/css/style.css">
 <title>cashList</title>
 </head>
@@ -92,8 +90,8 @@
 					<div class="card-body">
 						<div class="text-center">
 							<h3><%=year%>년<%=month+1%>월</h3>
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>">&#8701;이전달</a>
-							<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>">다음달&#8702;</a>
+							<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-outline-secondary btn-sm">&#8701;이전달</a>
+							<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-outline-secondary btn-sm">다음달&#8702;</a>
 						</div>
 						<!-- 달력 -->
 							<table class="table table-header-bg">
