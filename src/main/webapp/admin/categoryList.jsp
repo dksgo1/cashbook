@@ -33,39 +33,43 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<jsp:include page="/inc/adminHeader.jsp"></jsp:include>
-	</div>
-	<div class="col-lg-3 mx-auto">
-		<h1>카테고리 목록</h1>
-		<a href="<%=request.getContextPath()%>/admin/insertCategoryForm.jsp">카테고리 추가</a>
-		<table border ="1">
-			<tr>
-				<th>번호</th>
-				<th>수입/지출</th>
-				<th>이름</th>
-				<th>마지막 수정 날짜</th>
-				<th>생성날짜</th>
-				<th>수정</th>
-				<th>삭제</th>
-			</tr>
-			<!-- 모델데이터 categoryList 출력 -->
-			<%
-				for(Category c : categoryList) {
-			%>
+	<div class="container-scroller">
+		<div class="container-fluid page-body-wrapper">
+			<div>
+				<jsp:include page="/inc/header2.jsp"></jsp:include>
+			</div>	
+			<div class="col-lg-3 mx-auto">
+				<h1>카테고리 목록</h1>
+				<a href="<%=request.getContextPath()%>/admin/insertCategoryForm.jsp">카테고리 추가</a>
+				<table border ="1">
 					<tr>
-						<td><%=c.getCategoryNo()%></td>
-						<td><%=c.getCategoryKind()%></td>
-						<td><%=c.getCategoryName()%></td>
-						<td><%=c.getUpdatedate()%></td>
-						<td><%=c.getCreatedate()%></td>
-						<td><a href="<%=request.getContextPath()%>/admin/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo()%>">수정</a></td>
-						<td><a href="<%=request.getContextPath()%>/admin/deleteCategory.jsp?categoryNo=<%=c.getCategoryNo()%>">삭제</a></td>
+						<th>번호</th>
+						<th>수입/지출</th>
+						<th>이름</th>
+						<th>마지막 수정 날짜</th>
+						<th>생성날짜</th>
+						<th>수정</th>
+						<th>삭제</th>
 					</tr>
-			<%
-				}
-			%>
-		</table>
-	</div>
+					<!-- 모델데이터 categoryList 출력 -->
+					<%
+						for(Category c : categoryList) {
+					%>
+							<tr>
+								<td><%=c.getCategoryNo()%></td>
+								<td><%=c.getCategoryKind()%></td>
+								<td><%=c.getCategoryName()%></td>
+								<td><%=c.getUpdatedate()%></td>
+								<td><%=c.getCreatedate()%></td>
+								<td><a href="<%=request.getContextPath()%>/admin/updateCategoryForm.jsp?categoryNo=<%=c.getCategoryNo()%>">수정</a></td>
+								<td><a href="<%=request.getContextPath()%>/admin/deleteCategory.jsp?categoryNo=<%=c.getCategoryNo()%>">삭제</a></td>
+							</tr>
+					<%
+						}
+					%>
+				</table>
+			</div>
+		</div>
+	</div>		
 </body>
 </html>

@@ -82,9 +82,7 @@
 <body>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper">
-			<div>
-				<jsp:include page="/inc/header2.jsp"></jsp:include>
-			</div>   
+			
 			<div class="col-xl-9 grid-margin stretch-card mx-auto">
 				<div class="card">
 					<div class="card-body">
