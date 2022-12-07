@@ -90,7 +90,7 @@
 												<%
 							                  		if(m.get("commentMemo") == null) {
 												%>
-							              	 		<a href="">수정</a>   
+							              	 		<a href="<%=request.getContextPath()%>/help/updateHelpForm.jsp?helpNo=<%=m.get("helpNo")%>&helpMemo=<%=m.get("helpMemo")%>">수정</a>   
 												<%      
 													} else {
 												%>
@@ -103,7 +103,7 @@
 											   	<%
 													if(m.get("commentMemo") == null) {
 												%>
-													<a href="">삭제</a>   
+													<a href="<%=request.getContextPath()%>/help/deleteHelp.jsp?helpNo=<%=m.get("helpNo")%>">삭제</a>   
 												<%      
 													} else {
 												%>

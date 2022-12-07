@@ -9,11 +9,35 @@ import java.util.HashMap;
 import util.DBUtil;
 
 public class HelpDao {
+	
+	// deleteHelp
+	public int deleteHelp(int helpNo) throws Exception {
+		int row = 0;
+		
+		String sql = "DELETE FROM help WHERE help_no = ?";
+		
+		DBUtil dbUtil =  new DBUtil();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		conn = dbUtil.getConnection();
+		stmt = conn.prepareStatement(sql);
+		
+		stmt.setInt(1, helpNo);
+		row = stmt.executeUpdate();
+
+		dbUtil.close(null, stmt, conn);
+		
+		return row;
+	}
+		
+	
+	
 	// updateForm
 	public Help selectHelpOne(int helpNo) throws Exception {
 		Help help = null;
 		
-		String sql = "SELECT help_no helpNo, help_memo helpMemo, FROM help WHERE help_no = ?";
+		String sql = "SELECT help_no helpNo, help_memo helpMemo FROM help WHERE help_no = ?";
 		
 		DBUtil dbUtil =  new DBUtil();
 		Connection conn = null;
@@ -38,10 +62,10 @@ public class HelpDao {
 	
 	// updateAction
 	
-	public int updateHelp(String helpMemo, String memberId, int helpNo) throws Exception {
+	public int updateHelp(String helpMemo, int helpNo) throws Exception {
 		int row = 0;
 		
-		String sql = "UPDATE help SET help_memo = ?, member_id = ?, updatedate = NOW() WHERE help_no =?";
+		String sql = "UPDATE help SET help_memo = ?, updatedate = NOW() WHERE help_no =?";
 		
 		DBUtil dbUtil =  new DBUtil();
 		Connection conn = null;
@@ -51,8 +75,7 @@ public class HelpDao {
 		stmt = conn.prepareStatement(sql);
 		
 		stmt.setString(1, helpMemo);
-		stmt.setString(2, memberId);
-		stmt.setInt(3, helpNo);
+		stmt.setInt(2, helpNo);
 		
 		row = stmt.executeUpdate();
 		
