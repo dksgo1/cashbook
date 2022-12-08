@@ -197,23 +197,48 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMem
             <img src="images/faces/face28.png">
           </div>
           <div class="user-name">
-              Edward Spencer
+              <%=loginMember.getMemberName()%>님 반갑습니다
           </div>
           <div class="user-designation">
-              Developer
+				<%
+					if(loginMember.getMemberLevel() > 0) {
+				%>
+						<span>등급: 관리자</span>
+				<%
+					} else {
+				%>
+						<span>등급: 일반회원</span>
+				<%
+					}
+				%>		
           </div>
         </div>
         <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              <i class="icon-box menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
-          </li>
+        <%
+			if(loginMember.getMemberLevel() > 0) {
+		%>
+					
+				<li class="nav-item">
+					 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+						<i class="icon-head menu-icon"></i>
+							<span class="menu-title">관리자 페이지</span>
+          				<i class="menu-arrow"></i>
+          			</a>	
+  				 	<div class="collapse" id="ui-basic">
+  						<ul class="nav flex-column sub-menu">
+  							<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+      						<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+						</ul>
+					</div>	
+				</li>
+						
+			<%
+				}
+			%>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
               <i class="icon-disc menu-icon"></i>
-              <span class="menu-title">UI Elements</span>
+              <span class="menu-title">가계부</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="ui-basic">
@@ -226,47 +251,25 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMem
           <li class="nav-item">
             <a class="nav-link" href="pages/forms/basic_elements.html">
               <i class="icon-file menu-icon"></i>
-              <span class="menu-title">Form elements</span>
+              <span class="menu-title">개인정보 수정</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
               <i class="icon-pie-graph menu-icon"></i>
-              <span class="menu-title">Charts</span>
+              <span class="menu-title">비밀번호 수정</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/tables/basic-table.html">
               <i class="icon-command menu-icon"></i>
-              <span class="menu-title">Tables</span>
+              <span class="menu-title">고객센터</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/icons/feather-icons.html">
               <i class="icon-help menu-icon"></i>
-              <span class="menu-title">Icons</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-              <i class="icon-head menu-icon"></i>
-              <span class="menu-title">User Pages</span>
-              <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
-              </ul>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="docs/documentation.html">
-              <i class="icon-book menu-icon"></i>
-              <span class="menu-title">Documentation</span>
+              <span class="menu-title">로그아웃</span>
             </a>
           </li>
         </ul>
@@ -511,319 +514,6 @@ ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMem
                 </div>
               </div>
           </div>
-          <div class="row">
-            <div class="col-xl-9 grid-margin-lg-0 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title">Top Sellers</h4>
-                    <div class="table-responsive mt-3">
-                      <table class="table table-header-bg">
-                        <thead>
-                          <tr>
-                            <th>
-                                Country
-                            </th>
-                            <th>
-                                Revenue
-                            </th>
-                            <th>
-                                Vs Last Month
-                            </th>
-                            <th>
-                                Goal Reached
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>
-                              <i class="flag-icon flag-icon-us mr-2" title="us" id="us"></i> United States 
-                            </td>
-                            <td>
-                              $911,200
-                            </td>
-                            <td>
-                              <div class="text-success"><i class="icon-arrow-up mr-2"></i>+60%</div>
-                            </td>
-                            <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  25%
-                                </div>
-                              </div>
-                            </td>
-                            
-                          </tr>
-                          <tr>
-                            <td>
-                              <i class="flag-icon flag-icon-at mr-2" title="us" id="at"></i> Austria
-                            </td>
-                            <td>
-                                $821,600
-                            </td>
-                            <td>
-                              <div class="text-danger"><i class="icon-arrow-down mr-2"></i>-40%</div>
-                            </td>
-                            <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  50%
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>
-                              <i class="flag-icon flag-icon-fr mr-2" title="us" id="fr"></i> France
-                            </td>
-                            <td>
-                                $323,700
-                            </td>
-                            <td>
-                              <div class="text-success"><i class="icon-arrow-up mr-2"></i>+40%</div>
-                            </td>
-                            <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 10%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  10%
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="py-1">
-                              <i class="flag-icon flag-icon-de mr-2" title="us" id="de"></i> Germany
-                            </td>
-                            <td>
-                                $833,205
-                            </td>
-                            <td>
-                              <div class="text-danger"><i class="icon-arrow-down mr-2"></i>-80%</div>
-                            </td>
-                            <td>
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 70%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  70%
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="pb-0">
-                              <i class="flag-icon flag-icon-ae mr-2" title="ae" id="ae"></i> united arab emirates
-                            </td>
-                            <td class="pb-0">
-                                $232,243
-                            </td>
-                            <td class="pb-0">
-                              <div class="text-success"><i class="icon-arrow-up mr-2"></i>+80%</div>
-                            </td>
-                            <td class="pb-0">
-                              <div class="row">
-                                <div class="col-sm-10">
-                                  <div class="progress">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                  </div>
-                                </div>
-                                <div class="col-sm-2">
-                                  0%
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-                          
-                        </tbody>
-                      </table>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-xl-3 grid-margin-lg-0 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-3">Overall rating</h4>
-                    <div class="d-flex">
-                      <div>
-                          <h4 class="text-dark font-weight-bold mb-2 mr-2">4.3</h4>
-                      </div>
-                      <div>
-                        <select id="over-all-rating" name="rating" autocomplete="off">
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                        </select>
-                      </div>
-                    </div>
-                    <p class="mb-4">Based on 186 reviews</p>
-                    <div class="row">
-                      <div class="col-sm-2 pr-0">
-                          <div class="d-flex">
-                            <div>
-                                <div class="text-dark font-weight-bold mb-2 mr-2">5</div>
-                            </div>
-                            <div>
-                              <i class="fa fa-star text-warning"></i>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-9 pl-2">
-                          <div class="row">
-                            <div class="col-sm-10">
-                              <div class="progress progress-lg mt-1">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 80%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-2 p-lg-0">
-                              80%
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col-sm-2 pr-0">
-                          <div class="d-flex">
-                            <div>
-                                <div class="text-dark font-weight-bold mb-2 mr-2">4</div>
-                            </div>
-                            <div>
-                              <i class="fa fa-star text-warning"></i>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-9 pl-2">
-                          <div class="row">
-                            <div class="col-sm-10">
-                              <div class="progress progress-lg mt-1">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 45%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-2 p-lg-0">
-                              45%
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col-sm-2 pr-0">
-                          <div class="d-flex">
-                            <div>
-                                <div class="text-dark font-weight-bold mb-2 mr-2">3</div>
-                            </div>
-                            <div>
-                              <i class="fa fa-star text-warning"></i>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-9 pl-2">
-                          <div class="row">
-                            <div class="col-sm-10">
-                              <div class="progress progress-lg mt-1">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-2 p-lg-0">
-                              30%
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col-sm-2 pr-0">
-                          <div class="d-flex">
-                            <div>
-                                <div class="text-dark font-weight-bold mb-2 mr-2">2</div>
-                            </div>
-                            <div>
-                              <i class="fa fa-star text-warning"></i>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-9 pl-2">
-                          <div class="row">
-                            <div class="col-sm-10">
-                              <div class="progress progress-lg mt-1">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 8%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-2 p-lg-0">
-                              8%
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col-sm-2 pr-0">
-                          <div class="d-flex">
-                            <div>
-                                <div class="text-dark font-weight-bold mb-2 mr-2">5</div>
-                            </div>
-                            <div>
-                              <i class="fa fa-star text-warning"></i>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-sm-9 pl-2">
-                          <div class="row">
-                            <div class="col-sm-10">
-                              <div class="progress progress-lg mt-1">
-                                <div class="progress-bar bg-warning" role="progressbar" style="width: 1%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                              </div>
-                            </div>
-                            <div class="col-sm-2 p-lg-0">
-                              1%
-                            </div>
-                          </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <p class="mb-2 mt-3 mb-3 text-dark font-weight-bold">Rating by category</p>
-                        <div class="d-flex">
-                            <div>
-                                <div class="text-dark font-weight-bold mb-2 mr-2">4.3</div>
-                            </div>
-                            <div class="mr-2">
-                              <i class="fa fa-star text-warning"></i>
-                            </div>
-                            <div><p>Work/Management</p></div>
-                          </div>
-                          <div class="d-flex">
-                              <div>
-                                  <div class="text-dark font-weight-bold mb-2 mr-2">3.5</div>
-                              </div>
-                              <div class="mr-2">
-                                <i class="fa fa-star text-warning"></i>
-                              </div>
-                              <div><p>Salary/Culture</p></div>
-                            </div>
-                      </div>
-                    </div>
-
-                </div>
-              </div>
-            </div>
           </div>
         </div>
         <!-- content-wrapper ends -->

@@ -18,9 +18,9 @@
 	String memberId = request.getParameter("memberId");
 	String memberPw = request.getParameter("memberPw");
 	String memberName = request.getParameter("memberName");
-	//System.out.println("memberId");
-	//System.out.println("memberPw");
-	//System.out.println("memberName");
+	//System.out.println(memberId);
+	//System.out.println(memberPw);
+	//System.out.println(memberName);
 	
 	Member member = new Member();
 	member.setMemberId(memberId);
