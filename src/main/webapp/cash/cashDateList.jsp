@@ -30,59 +30,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+	<!-- Required meta tags --> 
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- base:css -->
+	<link rel="stylesheet" href="../regal/regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/base/vendor.bundle.base.css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<link rel="stylesheet" href="../regal/regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
+	<link rel="stylesheet" href="../regal/regal/vendors/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars.css">
+	<!-- End plugin css for this page -->
+	<!-- inject:css -->
+	<link rel="stylesheet" href="../regal/regal/css/style.css">
+	<!-- endinject -->
+	<link rel="shortcut icon" href="../regal/regal/images/favicon.png" />
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<jsp:include page="/inc/header.jsp"></jsp:include>
-	</div>
 	<!-- cash 입력 폼 -->
 	<form action="<%=request.getContextPath()%>/cash/insertCashAction.jsp" method="post">
-		<input type="hidden" name="memberId" value="<%=loginMember.getMemberId() %>">
-		<input type="hidden" name="year" value="<%=year%>">
-		<input type="hidden" name="month" value="<%=month%>">
-		<input type="hidden" name="date" value="<%=date%>">
-		<table border="1">
-			<tr>
-				<td>categoryNo</td>
-				<td>
-					<select name = "categoryNo">
-					<%
-						for(Category c : categoryList) {
-					%>
-							<option value="<%=c.getCategoryNo()%>">
-								<%=c.getCategoryKind()%> <%=c.getCategoryName()%>
-							</option> 
-					<%
-						}
-					%>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>cashDate</td>
-				<td>
-				<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly">
-				</td>
-			</tr>
-			<tr>
-				<td>cashPrice</td>
-				<td>
-				<input type="number" name="cashPrice" value="">
-				</td>
-			</tr>
-			<tr>
-				<td>cashMemo</td>
-				<td>
-					<textarea rows="3" cols="50" name="cashMemo"></textarea>
-				</td>
-			</tr>
-		</table>
-		<button type="submit">입력</button>
+		<div class="col-xl-10 d-flex grid-margin stretch-card">
+			<div class="card">
+				<div class="card-body">
+       				<h4 class="card-link">수입이나 지출을 입력하세요.</h4>
+					<div class="row">
+						<div class="col-lg-10">		
+							<input type="hidden" name="memberId" value="<%=loginMember.getMemberId()%>">
+							<input type="hidden" name="year" value="<%=year%>">
+							<input type="hidden" name="month" value="<%=month%>">
+							<input type="hidden" name="date" value="<%=date%>">
+							<table class="table table-striped">
+								<tr>
+									<td>categoryNo</td>
+									<td>
+										<select name = "categoryNo">
+										<%
+											for(Category c : categoryList) {
+										%>
+												<option value="<%=c.getCategoryNo()%>">
+													<%=c.getCategoryKind()%> <%=c.getCategoryName()%>
+												</option> 
+										<%
+											}
+										%>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>cashDate</td>
+									<td>
+									<input type="text" name="cashDate" value="<%=year%>-<%=month%>-<%=date%>" readonly="readonly">
+									</td>
+								</tr>
+								<tr>
+									<td>cashPrice</td>
+									<td>
+									<input type="number" name="cashPrice" value="">
+									</td>
+								</tr>
+								<tr>
+									<td>cashMemo</td>
+									<td>
+										<textarea rows="3" cols="50" name="cashMemo"></textarea>
+									</td>
+								</tr>
+							</table>
+							<button class="btn btn-secondary btn-rounded btn-fw" type="submit">입력</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</form>
 	<!-- cash 목록 출력 -->
-	<table border="1">
+	<table class ="table table-striped table-header-bg">
 		<tr>
 			<th>categoryKind</th>
 			<th>categoryName</th>
@@ -102,8 +127,8 @@
 					<%
 						int cashNo = (Integer)m.get("cashNo");
 					%>
-					<td><a href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month-1%>&date=<%=date%>">수정</a></td>
-					<td><a href="<%=request.getContextPath()%>/cash/deleteCash.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
+					<td><a class="btn btn-secondary btn-rounded btn-fw" href="<%=request.getContextPath()%>/cash/updateCashForm.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month-1%>&date=<%=date%>">수정</a></td>
+					<td><a class="btn btn-secondary btn-rounded btn-fw" href="<%=request.getContextPath()%>/cash/deleteCash.jsp?cashNo=<%=cashNo%>&year=<%=year%>&month=<%=month%>&date=<%=date%>">삭제</a></td>
 				</tr>
 		<%
 			}

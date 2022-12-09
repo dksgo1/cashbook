@@ -61,11 +61,11 @@
 	</div>	
 		<!-- 페이징 -->
 		<div class="text-center">
-			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1">처음</a>			   
+			<a class="btn btn-outline-dark btn-rounded btn-fw btn-sm" href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=1">처음</a>			   
 	      	<%
 				if(currentPage > 1) {
 	      	%>
-					<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>">
+					<a class="btn btn-outline-dark btn-rounded btn-fw btn-sm" href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage-1%>">
             			이전
        				</a>
 	      	<%      
@@ -75,13 +75,13 @@
  			<%  
 				if(currentPage < lastPage) {
 			%>
-	            	<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>">
+	            	<a class="btn btn-outline-dark btn-rounded btn-fw btn-sm" href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=currentPage+1%>">
 	             	  다음
 	            	</a>
 			<%   
 				}	
 			%>
-			<a href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막</a>
+			<a class="btn btn-outline-dark btn-rounded btn-fw btn-sm" href="<%=request.getContextPath()%>/loginForm.jsp?currentPage=<%=lastPage%>">마지막</a>
 		</div>	
 	<!-- 로그인 폼 -->
 	<form action="<%=request.getContextPath()%>/loginAction.jsp" method="post">

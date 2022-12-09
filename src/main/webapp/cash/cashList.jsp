@@ -74,22 +74,21 @@
 	<!-- Required meta tags --> 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Regal Admin</title>
 	<!-- base:css -->
-	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
-	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/base/vendor.bundle.base.css">
 	<!-- endinject -->
 	<!-- plugin css for this page -->
-	<link rel="stylesheet" href="../regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
-	<link rel="stylesheet" href="../regal/vendors/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
-	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
+	<link rel="stylesheet" href="../regal/regal/vendors/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars.css">
 	<!-- End plugin css for this page -->
 	<!-- inject:css -->
-	<link rel="stylesheet" href="../regal/css/style.css">
+	<link rel="stylesheet" href="../regal/regal/css/style.css">
 	<!-- endinject -->
-	<link rel="shortcut icon" href="../regal/images/favicon.png" />
+	<link rel="shortcut icon" href="../regal/regal/images/favicon.png" />
 </head>
 <body>
 	<div class="container-scroller">
@@ -127,7 +126,7 @@
 	             			<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
 	             			<a class="dropdown-item preview-item">
 	               				<div class="preview-thumbnail">
-	                   				<img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+	                   				<img src="../regal/regal/images/faces/face4.jpg" alt="image" class="profile-pic">
 	               				</div>
 	               				<div class="preview-item-content flex-grow">
 	                 				<h6 class="preview-subject ellipsis font-weight-normal">David Grey
@@ -194,7 +193,7 @@
    			<nav class="sidebar sidebar-offcanvas" id="sidebar">
        			<div class="user-profile">
          			<div class="user-image">
-           				<img src="images/faces/face28.png">
+           				<img src="../regal/regal/images/faces/face28.png">
          			</div>
 	         		<div class="user-name">
 	             		<%=loginMember.getMemberName()%>님 반갑습니다
@@ -217,13 +216,13 @@
 			        <%
 						if(loginMember.getMemberLevel() > 0) {
 					%>	
-							<li class="nav-item">
+							<li class="nav-item dropdown">
 					 			<a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
 									<i class="icon-head menu-icon"></i>
 									<span class="menu-title">관리자 페이지</span>
           							<i class="menu-arrow"></i>
          						</a>	
-								<div class="collapse" id="ui-basic">
+								<div class="collapse" id="#ui-basic">
 									<ul class="nav flex-column sub-menu">
 										<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
    										<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
@@ -291,7 +290,7 @@
                          					<h2><%=year%>년<%=month+1%>월</h2>
                        						<p class="card-title">이번달 총 수입</p>
                          					<h4 class="text-dark font-weight-bold mb-2">43,981</h4>
-                       						<img src="../regal/images/faces/smiley.jpg">
+                       						<img src="../regal/regal/images/faces/smiley.jpg">
                          					<canvas id="customers"></canvas>
                      					</div>
                    					</div>
@@ -302,7 +301,7 @@
                         					<h2><%=year%>년<%=month+1%>월</h2>
                          					<p class="card-title">이번달 총 지출</p>
                          					<h4 class="text-dark font-weight-bold mb-2">55,543</h4>
-                         					<img src="../regal/images/faces/sad.png">
+                         					<img src="../regal/regal/images/faces/sad.png">
                          					<canvas id="orders"></canvas>
                      					</div>
                    					</div>
@@ -320,7 +319,7 @@
 											<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-outline-secondary btn-sm">&#8701;이전달</a>
 											<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-outline-secondary btn-sm">다음달&#8702;</a>
                        					</div>
-				                  		<table class="table table-header-bg">
+				                  		<table class="table table-header-bg table-bordered">
 												<tr>
 													<th>일</th>
 													<th>월</th>

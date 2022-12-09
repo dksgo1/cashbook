@@ -28,7 +28,7 @@
 						<li><a href="<%=request.getContextPath()%>/admin/noticeList.jsp" class="btn btn-inverse-info for inverse buttons btn-lg btn-block btn-outline-dark">공지관리</a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-inverse-info for inverse buttons btn-lg btn-block btn-outline-dark">카테고리관리</a></li>
 						<li><a href="<%=request.getContextPath()%>/admin/memberList.jsp" class="btn btn-inverse-info for inverse buttons btn-lg btn-block btn-outline-dark">멤버관리(목록, 레벨수정, 강제탈퇴)</a></li>
-						<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-inverse-info for inverse buttons btn-lg btn-block btn-outline-dark">고객센터</a></li>
+						<li><a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-inverse-info for inverse buttons btn-lg btn-block btn-outline-dark">(관리자)고객센터</a></li>
 					</ul>
 				</div>	
 			</div>

@@ -245,7 +245,7 @@
        			<div class="content-wrapper">
          			<div class="row">
            				<div class="col-sm-12 mb-4 mb-xl-0">
-             				<h4 class="font-weight-bold text-dark">무엇이든 문의를 주세요</h4>
+             				<h4 class="font-weight-bold text-dark">관리자 페이지</h4>
            					<p class="font-weight-normal mb-2 text-muted"></p>
            				</div>
          			</div>
