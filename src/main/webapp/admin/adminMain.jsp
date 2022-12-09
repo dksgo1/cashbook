@@ -36,109 +36,344 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
+	<!-- Required meta tags --> 
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Regal Admin</title>
 	<!-- base:css -->
 	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
 	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<!-- endinject -->
+	<!-- plugin css for this page -->
+	<link rel="stylesheet" href="../regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
+	<link rel="stylesheet" href="../regal/vendors/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars.css">
+	<!-- End plugin css for this page -->
 	<!-- inject:css -->
 	<link rel="stylesheet" href="../regal/css/style.css">
-	<link rel="shortcut icon" href="../regal/images/favicon.png">
+	<!-- endinject -->
+	<link rel="shortcut icon" href="../regal/images/favicon.png" />
 <title>Insert title here</title>
 </head>
 <body>
+<body>
 	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper">
-			<div>
-				<jsp:include page="/inc/header2.jsp"></jsp:include>
-			</div>	
-			<!-- adminMain contents -->	
-			<!-- 최근 공지 -->
-			<div class="main-panel">
-				<div class="content-wrapper">
-					<div class="d-flex justify-content-center">				
-						<div class="col-xl-4 d-flex grid-margin stretch-card">
-	               			<div class="card">
-	                 			<div class="card-body">
-									<h4>최근 공지</h4>
-									<table class="table">
-										<tr>
-											<th>공지번호</th>
-											<th>공지내용</th>
-											<th>공지날짜</th>
-										</tr>
-										<%
-											for(Notice n : noticeList) {
-										%>
+		<!-- partial:partials/_navbar.html -->
+   		<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+   			<div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+       			<a class="navbar-brand brand-logo" href="<%=request.getContextPath()%>/cash/cashList.jsp"><img src="images/logo.svg" alt="logo"/></a>
+       				<a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+   			</div>
+     		<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+       			<button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+         			<span class="icon-menu"></span>
+       			</button>
+       			<ul class="navbar-nav mr-lg-2">
+         			<li class="nav-item nav-search d-none d-lg-block">
+           				<div class="input-group">
+             				<div class="input-group-prepend">
+               					<span class="input-group-text" id="search">
+                 					<i class="icon-search"></i>
+               					</span>
+             				</div>
+             				<input type="text" class="form-control" placeholder="Search Projects.." aria-label="search" aria-describedby="search">
+           				</div>
+         			</li>
+   				</ul>
+       			<ul class="navbar-nav navbar-nav-right">
+           			<li class="nav-item dropdown d-lg-flex d-none">
+               			<button type="button" class="btn btn-info font-weight-bold">+ Create New</button>
+           			</li>
+	         		<li class="nav-item dropdown d-flex">
+	           			<a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+	           				<i class="icon-air-play mx-0"></i>
+	           			</a>
+	           			<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+	             			<p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+	             			<a class="dropdown-item preview-item">
+	               				<div class="preview-thumbnail">
+	                   				<img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+	               				</div>
+	               				<div class="preview-item-content flex-grow">
+	                 				<h6 class="preview-subject ellipsis font-weight-normal">David Grey
+	                 				</h6>
+	                 				<p class="font-weight-light small-text text-muted mb-0">
+	               		  				The meeting is cancelled
+	                 				</p>
+	               				</div>
+	             			</a>
+	             			<a class="dropdown-item preview-item">
+	               				<div class="preview-thumbnail">
+	                   				<img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+	               				</div>
+	               				<div class="preview-item-content flex-grow">
+	                 				<h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+	                 				</h6>
+	                 				<p class="font-weight-light small-text text-muted mb-0">
+	                   					New product launch
+	                 				</p>
+	               				</div>
+	           				</a>
+	             			<a class="dropdown-item preview-item">
+								<div class="preview-thumbnail">
+	                   				<img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+	               				</div>
+	               				<div class="preview-item-content flex-grow">
+	                 				<h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+	                 				</h6>
+	                 				<p class="font-weight-light small-text text-muted mb-0">
+	                   					Upcoming board meeting
+	                 				</p>
+	               				</div>
+	             			</a>
+	   					</div>
+	  		 		</li>
+	         		<li class="nav-item dropdown d-flex mr-4 ">
+	           			<a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center" id="notificationDropdown" href="#" data-toggle="dropdown">
+	             			<i class="icon-cog"></i>
+	           			</a>
+	           			<div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+	             			<p class="mb-0 font-weight-normal float-left dropdown-header">Settings</p>
+	           				<a class="dropdown-item preview-item">               
+	                 			<i class="icon-head"></i> Profile
+	             			</a>
+	             			<a class="dropdown-item preview-item">
+	                 			<i class="icon-inbox"></i> Logout
+	             			</a>
+	           			</div>
+	         		</li>
+	         		<li class="nav-item dropdown mr-4 d-lg-flex d-none">
+	           			<a class="nav-link count-indicatord-flex align-item s-center justify-content-center" href="#">
+	             			<i class="icon-grid"></i>
+	           			</a>
+	         		</li>
+      			</ul>
+      			<button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+         			<span class="icon-menu"></span>
+     			</button>
+     		</div>
+		</nav>
+   		<!-- partial -->
+   		<div class="container-fluid page-body-wrapper">
+     		<!-- partial:partials/_sidebar.html -->
+   			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+       			<div class="user-profile">
+         			<div class="user-image">
+           				<img src="images/faces/face28.png">
+         			</div>
+	         		<div class="user-name">
+	             		<%=loginMember.getMemberName()%>님 반갑습니다
+	         		</div>
+	         		<div class="user-designation">
+						<%
+							if(loginMember.getMemberLevel() > 0) {
+						%>
+								<span>등급: 관리자</span>
+						<%
+							} else {
+						%>
+								<span>등급: 일반회원</span>
+						<%
+							}
+						%>		
+	         		</div>
+       			</div>
+       			<ul class="nav">
+			        <%
+						if(loginMember.getMemberLevel() > 0) {
+					%>	
+							<li class="nav-item">
+					 			<a class="nav-link" data-toggle="collapse" href="<%=request.getContextPath()%>/admin/adminMain.jsp" aria-expanded="false" aria-controls="ui-basic">
+									<i class="icon-head menu-icon"></i>
+									<span class="menu-title">관리자 페이지</span>
+          							<i class="menu-arrow"></i>
+         						</a>	
+								<div class="collapse" id="ui-basic">
+									<ul class="nav flex-column sub-menu">
+										<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+   										<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+									</ul>
+								</div>	
+							</li>
+						
+					<%
+						}
+					%>
+      				<li class="nav-item">
+           				<a class="nav-link" data-toggle="collapse" href="<%=request.getContextPath()%>/cash/cashList.jsp" aria-expanded="false" aria-controls="ui-basic">
+             				<i class="icon-disc menu-icon"></i>
+             				<span class="menu-title">가계부</span>
+             				<i class="menu-arrow"></i>
+           				</a>
+           				<div class="collapse" id="ui-basic">
+             				<ul class="nav flex-column sub-menu">
+               					<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+               					<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+             				</ul>
+           				</div>
+         			</li>
+         			<li class="nav-item">
+           				<a class="nav-link" href="<%=request.getContextPath()%>/updateMemberForm.jsp">
+             				<i class="icon-file menu-icon"></i>
+             				<span class="menu-title">개인정보 수정</span>
+           				</a>
+         			</li>
+       				<li class="nav-item">
+           				<a class="nav-link" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">
+             				<i class="icon-pie-graph menu-icon"></i>
+             				<span class="menu-title">비밀번호 수정</span>
+           				</a>
+         			</li>
+         			<li class="nav-item">
+           				<a class="nav-link" href="<%=request.getContextPath()%>/help/helpList.jsp">
+             				<i class="icon-command menu-icon"></i>
+             				<span class="menu-title">고객센터</span>
+           				</a>
+         			</li>
+					<li class="nav-item">
+           				<a class="nav-link" href="<%=request.getContextPath()%>/logout.jsp">
+             				<i class="icon-help menu-icon"></i>
+           					<span class="menu-title">로그아웃</span>
+           				</a>
+         			</li>
+       			</ul>
+   			</nav>
+   			<!-- partial -->
+     		<div class="main-panel">
+       			<div class="content-wrapper">
+         			<div class="row">
+           				<div class="col-sm-12 mb-4 mb-xl-0">
+             				<h4 class="font-weight-bold text-dark">무엇이든 문의를 주세요</h4>
+           					<p class="font-weight-normal mb-2 text-muted"></p>
+           				</div>
+         			</div>
+         			<div class="row mt-3">
+           				<div class="col-xl-6 flex-column d-flex grid-margin stretch-card">
+             				<div class="row flex-grow">
+               					<div class="col-sm-11 grid-margin stretch-card">
+                   					<div class="card">
+                     					<div class="card-body">
+                       						<h4>최근 공지</h4>
+											<table class="table">
+												<tr>
+													<th>공지번호</th>
+													<th>공지내용</th>
+													<th>공지날짜</th>
+												</tr>
+												<%
+													for(Notice n : noticeList) {
+												%>
 												<tr>
 													<td><%=n.getNoticeNo()%></td>
 													<td><%=n.getNoticeMemo()%></td>
 													<td><%=n.getCreatedate()%></td>
 												</tr>
-										<%
-											}
-										%>
-									</table>
-								</div>
-							</div>
-						</div>	
-							<!-- 최근 가입한 회원 -->
-						<div class="col-xl-4 d-flex grid-margin stretch-card">
-	          				<div class="card">
-	           					<div class="card-body">
-									<h4>최근 가입 회원</h4>
-									<table class="table">
-										<tr>
-											<th>아이디</th>
-											<th>이름</th>
-											<th>생성날짜</th>
-										</tr>
-										<%
-											for(Member m : memberList) {
-										%>
+												<%
+													}
+												%>
+											</table>
+                         					<canvas id="customers"></canvas>
+                     					</div>
+                   					</div>
+               					</div>
+               					<div class="col-sm-11 stretch-card">
+                   					<div class="card">
+                     					<div class="card-body">
+                         					<h4>최근 가입 회원</h4>
+											<table class="table">
+												<tr>
+													<th>아이디</th>
+													<th>이름</th>
+													<th>생성날짜</th>
+												</tr>
+												<%
+													for(Member m : memberList) {
+												%>
 												<tr>
 													<td><%=m.getMemberId()%></td>
 													<td><%=m.getMemberName()%></td>
 													<td><%=m.getCreatedate()%></td>
 												</tr>
-										<%
-											}
-										%>
-									</table>
-								</div>
-							</div>		
-						</div>
-						<div class="col-xl-4 d-flex grid-margin stretch-card">
-	       					<div class="card">
-	  							<div class="card-body">
-									<!-- 최근 문의 -->
-									<h4>최근 문의사항</h4>
-									<table class="table">
-										<tr>
-											<th>문의 내용</th>
-											<th>아이디</th>
-											<th>문의날짜</th>
-										</tr>
-										<%
-											for(HashMap<String, Object> h : helpList) {
-										%>
-												<tr>
-													<td><%=h.get("helpMemo")%></td>
-													<td><%=h.get("memberId")%></td>
-													<td><%=h.get("helpCreatedate")%></td>
-												</tr>	
-										<%
-											}
-										%>
+												<%
+													}
+												%>
 									</table>	
+                         					<canvas id="orders"></canvas>
+                     					</div>
+                   					</div>
+              					</div>
+             				</div>
+	 					</div>
+						<div class="col-xl-6 d-flex grid-margin stretch-card">
+               				<div class="card">
+                 				<div class="card-body">
+                     				<h4 class="card-title">고객센터</h4>		
+                   					<div class="row">
+                       					<div class="col-lg-7">
+										<!-- 최근 문의 -->
+										<h4>최근 문의사항</h4>
+										<table class="table">
+											<tr>
+												<th>문의 내용</th>
+												<th>아이디</th>
+												<th>문의날짜</th>
+											</tr>
+											<%
+												for(HashMap<String, Object> h : helpList) {
+											%>
+													<tr>
+														<td><%=h.get("helpMemo")%></td>
+														<td><%=h.get("memberId")%></td>
+														<td><%=h.get("helpCreatedate")%></td>
+													</tr>	
+											<%
+												}
+											%>
+									</table>											 						
+									</div>
 								</div>
 							</div>
-						</div>
-					</div>			
-				</div>
+      					</div>
+						<div class="row">
+         				</div>
+         			</div>
+       			</div>
+        		<!-- content-wrapper ends -->
+        		<!-- partial:partials/_footer.html -->
+        		<footer class="footer">
+   					<div class="d-sm-flex justify-content-center justify-content-sm-between">
+          				<span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © bootstrapdash.com 2020</span>
+            			<span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center"> Free <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap dashboard templates</a> from Bootstrapdash.com</span>
+        			</div>
+         			<span class="text-muted d-block text-center text-sm-left d-sm-inline-block mt-2">Distributed By: <a href="https://www.themewagon.com/" target="_blank">ThemeWagon</a></span> 
+       			</footer>
+       			</div>
+        <!-- partial -->
 			</div>
-		</div>	
-	</div>		
+      <!-- main-panel ends -->
+		</div>
+	<!-- page-body-wrapper ends -->
+	</div>
+	<!-- container-scroller -->
+
+	<!-- base:js -->
+	<script src="vendors/base/vendor.bundle.base.js"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page-->
+	<!-- End plugin js for this page-->
+	<!-- inject:js -->
+	<script src="js/off-canvas.js"></script>
+	<script src="js/hoverable-collapse.js"></script>
+	<script src="js/template.js"></script>
+	<!-- endinject -->
+	<!-- plugin js for this page -->
+	<script src="vendors/chart.js/Chart.min.js"></script>
+	<script src="vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
+	<!-- End plugin js for this page -->
+	<!-- Custom js for this page-->
+	<script src="js/dashboard.js"></script>
+	<!-- End custom js for this page-->
 </body>
 </html>
