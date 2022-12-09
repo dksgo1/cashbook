@@ -208,7 +208,7 @@
          			</li>
        				<li class="nav-item">
            				<a class="nav-link" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">
-             				<i class="icon-pie-graph menu-icon"></i>
+             				<i class="icon-lock menu-icon"></i>
              				<span class="menu-title">비밀번호 수정</span>
            				</a>
          			</li>
@@ -220,7 +220,7 @@
          			</li>
 					<li class="nav-item">
            				<a class="nav-link" href="<%=request.getContextPath()%>/logout.jsp">
-             				<i class="icon-help menu-icon"></i>
+             				<i class="icon-unlock menu-icon"></i>
            					<span class="menu-title">로그아웃</span>
            				</a>
          			</li>
@@ -253,7 +253,7 @@
                    					<div class="card">
                      					<div class="card-body">
                         					
-                         					<h3 class="text-dark font-weight-bold">가장 자주 묻는 질문</h3>
+                         					<h3 class="text-dark font-weight-bold">혹시 이런것이 궁금하시나요?</h3>
                          					<h5 class="text-dark mb-2">가계부 작성방법</h5>
                          					<canvas id="orders"></canvas>
                      					</div>

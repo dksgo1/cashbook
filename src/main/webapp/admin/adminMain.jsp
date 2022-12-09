@@ -222,7 +222,7 @@
          			</li>
        				<li class="nav-item">
            				<a class="nav-link" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">
-             				<i class="icon-pie-graph menu-icon"></i>
+             				<i class="icon-lock menu-icon"></i>
              				<span class="menu-title">비밀번호 수정</span>
            				</a>
          			</li>

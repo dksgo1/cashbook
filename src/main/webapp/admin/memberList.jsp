@@ -214,7 +214,7 @@
          			</li>
        				<li class="nav-item">
            				<a class="nav-link" href="<%=request.getContextPath()%>/updateMemberPwForm.jsp">
-             				<i class="icon-pie-graph menu-icon"></i>
+             				<i class="icon-lock menu-icon"></i>
              				<span class="menu-title">비밀번호 수정</span>
            				</a>
          			</li>
@@ -226,7 +226,7 @@
          			</li>
 					<li class="nav-item">
            				<a class="nav-link" href="<%=request.getContextPath()%>/logout.jsp">
-             				<i class="icon-help menu-icon"></i>
+             				<i class="icon-unlock menu-icon"></i>
            					<span class="menu-title">로그아웃</span>
            				</a>
          			</li>
