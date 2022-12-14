@@ -14,8 +14,7 @@
 	// Controller : session, request
 	//session에 지정된 멤버(현재 로그인 사용자)
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	
-	
+	String memberId = request.getParameter("memberId");
 	// request 년 + 월 넘어와야 함
 	int year = 0;
 	int month = 0;
@@ -64,31 +63,23 @@
 	CashDao cashDao = new CashDao();
 	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMember.getMemberId(), year, month+1);
 	
-	
 	// view : 달력출력 + 일별 cash 목록 출력
 %>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<!-- Required meta tags --> 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- base:css -->
 	<link rel="stylesheet" href="../regal/regal/vendors/mdi/css/materialdesignicons.min.css">
 	<link rel="stylesheet" href="../regal/regal/vendors/feather/feather.css">
 	<link rel="stylesheet" href="../regal/regal/vendors/base/vendor.bundle.base.css">
-	<!-- endinject -->
-	<!-- plugin css for this page -->
-	<link rel="stylesheet" href="../regal/regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
+	<link rel="stylesheet" href="../regal/regal/vendors/flag-icon-css/css/flag-icon.min.css">
 	<link rel="stylesheet" href="../regal/regal/vendors/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
 	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars.css">
-	<!-- End plugin css for this page -->
-	<!-- inject:css -->
 	<link rel="stylesheet" href="../regal/regal/css/style.css">
-	<!-- endinject -->
-	<link rel="shortcut icon" href="../regal/regal/images/favicon.png" />
+	<link rel="shortcut icon" href="../regal/regal/images/favicon.png">
 </head>
 <body>
 	<div class="container-scroller">
@@ -246,6 +237,32 @@
              				</ul>
            				</div>
          			</li>
+      				<li class="nav-item">
+           				<a class="nav-link" data-toggle="collapse" href="<%=request.getContextPath()%>/cash/cashStatsYear.jsp" aria-expanded="false" aria-controls="ui-basic">
+             				<i class="icon-disc menu-icon"></i>
+             				<span class="menu-title">통계</span>
+             				<i class="menu-arrow"></i>
+           				</a>
+           				<div class="collapse" id="ui-basic">
+             				<ul class="nav flex-column sub-menu">
+               					<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+               					<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+             				</ul>
+           				</div>
+         			</li>
+     				<li class="nav-item">
+           				<a class="nav-link" data-toggle="collapse" href="<%=request.getContextPath()%>/cash/cashStatsMonth.jsp?year=<%=year%>" aria-expanded="false" aria-controls="ui-basic">
+             				<i class="icon-disc menu-icon"></i>
+             				<span class="menu-title">통계(월)</span>
+             				<i class="menu-arrow"></i>
+           				</a>
+           				<div class="collapse" id="ui-basic">
+             				<ul class="nav flex-column sub-menu">
+               					<li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+               					<li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
+             				</ul>
+           				</div>
+         			</li>
          			<li class="nav-item">
            				<a class="nav-link" href="<%=request.getContextPath()%>/updateMemberForm.jsp">
              				<i class="icon-file menu-icon"></i>
@@ -289,7 +306,7 @@
                      					<div class="card-body">
                          					<h2><%=year%>년<%=month+1%>월</h2>
                        						<p class="card-title">이번달 총 수입</p>
-                         					<h4 class="text-dark font-weight-bold mb-2">43,981</h4>
+                         					<h4 class="text-dark font-weight-bold mb-2">1111</h4>
                        						<img src="../regal/regal/images/faces/smiley.jpg">
                          					<canvas id="customers"></canvas>
                      					</div>

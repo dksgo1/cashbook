@@ -31,7 +31,7 @@
 	
 
 	if(resultMember != null && resultMember.getMemberNo() !=0) {
-		System.out.println("로그인 성공");	
+		System.out.println("로그인 성공");
 		session.setAttribute("loginMember", resultMember);	// session 안에 로그인ID, 이름 저장
 		redirectUrl = "/cash/cashList.jsp";
 	} 
