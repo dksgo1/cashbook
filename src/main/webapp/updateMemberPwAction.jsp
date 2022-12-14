@@ -7,7 +7,6 @@
 <%
 	request.setCharacterEncoding("UTF-8"); // 인코딩			
 	
-	
 	if(session.getAttribute("loginMember") == null) {
 		// 로그인 되지 않은 상태
 		response.sendRedirect(request.getContextPath()+"/loginForm.jsp");

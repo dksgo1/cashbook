@@ -9,10 +9,10 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- base:css -->
-	<link rel="stylesheet" href="regal/vendors/mdi/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="regal/vendors/feather/feather.css">
-	<link rel="stylesheet" href="regal/vendors/base/vendor.bundle.base.css">
-	<link rel="stylesheet" href="regal/css/style.css">
+	<link rel="stylesheet" href="regal/regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="regal/regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="regal/regal/vendors/base/vendor.bundle.base.css">
+	<link rel="stylesheet" href="regal/regal/css/style.css">
 <title>insertMemberForm</title>
 </head>
 <body>

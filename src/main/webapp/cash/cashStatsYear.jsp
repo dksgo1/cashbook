@@ -42,7 +42,7 @@
 		<jsp:include page="/inc/header2.jsp"></jsp:include>		        		
 	</div>
 	<div class="container-fluid page-body-wrapper">	
-		<jsp:include page="/inc/menu.jsp"></jsp:include>	
+		<jsp:include page="/inc/main.jsp"></jsp:include>	
 		<div class="col-xl-10 d-flex grid-margin stretch-card">	
 			<div class="card">
 				<div class="card-body">

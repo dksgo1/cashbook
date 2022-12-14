@@ -130,8 +130,16 @@ public class MemberDao {
 	}
 	
 	// 회원탈퇴
-	public int deleteMember(Member member) {
-		return 0;
+	public int deleteMember(String memberId, String memberPw) throws Exception{	
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();		
+		String sql = "DELETE FROM MEMBER WHERE member_id=? AND member_pw = PASSWORD(?)";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, memberId);
+		stmt.setString(2, memberPw);
+		int row = stmt.executeUpdate();	
+		dbUtil.close(null, stmt, conn);
+		return row;		
 	}
 	
 	// 로그인

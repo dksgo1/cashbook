@@ -39,7 +39,7 @@
 <title>updateMemberForm</title>
 </head>
 <body>
-	<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post">
+	<form action="<%=request.getContextPath()%>/updateMemberAction.jsp" method="post" id="updateForm">
 		<div class="container-scroller">
    			<div class="container-fluid page-body-wrapper full-page-wrapper">
    				<div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
@@ -47,7 +47,7 @@
 						<div class="col-lg-6 d-flex align-items-center justify-content-center">
 							<div class="auth-form-transparent text-left p-3">
 								<div class="brand-logo">
-									<img src="../../images/logo-dark.svg" alt="logo">
+									<img src="regal/regal/images/logo-dark.svg" alt="logo">
 								</div>
 									<h4>개인정보 수정</h4>
 	      							<div class="form-group">
@@ -69,7 +69,7 @@
 												<i class="mdi mdi-lock-outline text-primary"></i>
 											</span>
 										</div>
-										<input type="password" name="memberPw" class="form-control form-control-lg border-left-0" id="exampleInputPassword" placeholder="비밀번호">                        
+										<input type="password" name="memberPw" class="form-control form-control-lg border-left-0" id="pw" placeholder="비밀번호">                        
 									</div>
 	           					</div>
 	           					<div class="form-group">
@@ -84,7 +84,18 @@
 									</div>
 	           					</div>
 	               				<div class="my-3">
-	                 				<button type="submit" class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn">개인정보 수정</button>
+	                 				<button type="button" id="updateBtn" class="btn btn-block btn-info btn-lg font-weight-medium auth-form-btn">개인정보 수정</button>
+	               				</div>
+	               				 <div>
+									<%
+										if(request.getParameter("msg2") != null) {
+									%>
+										<div class="alert alert-danger">
+											<%=request.getParameter("msg2") %>
+										</div>
+									<%
+										}
+									%>
 	               				</div>
 	       					</div>
 	       				</div>
@@ -95,10 +106,28 @@
 				</div>
 			</div>
 		</div>
-		<script src="../../vendors/base/vendor.bundle.base.js"></script>
-		<script src="../../js/off-canvas.js"></script>
-		<script src="../../js/hoverable-collapse.js"></script>
-		<script src="../../js/template.js"></script>
 	</form>
+	<br>
+	<script>
+	let updateBtn = document.querySelector('#updateBtn');
+	
+	updateBtn.addEventListener('click', function() {
+		// 디버깅
+		console.log('updateBtn click!');
+		
+	 	// PW 폼 유효성 검사
+        let pw = document.querySelector('#pw');
+        if(pw.value == '') {
+           alert('pw를 확인하세요');
+           pw.focus();
+           return;
+        }
+		
+		
+		let updateForm = document.querySelector('#updateForm');
+		updateForm.submit(); // action="./signinAction.jsp"
+	});
+	
+	</script>
 </body>
 </html>
