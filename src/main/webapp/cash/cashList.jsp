@@ -63,6 +63,12 @@
 	CashDao cashDao = new CashDao();
 	ArrayList<HashMap<String, Object>> list = cashDao.selectCashListByMonth(loginMember.getMemberId(), year, month+1);
 	
+	// Model호출 : 월 평균 수입 지출 합계
+	Member member = new Member();
+	member.setMemberId(loginMember.getMemberId());
+	
+	HashMap<String, Object> statsList = cashDao.selectCashStatsByMonth(member, year);
+	System.out.println(statsList);
 	// view : 달력출력 + 일별 cash 목록 출력
 %>
 <!DOCTYPE html>
@@ -71,15 +77,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="../regal/regal/vendors/mdi/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/feather/feather.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/base/vendor.bundle.base.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/flag-icon-css/css/flag-icon.min.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars.css">
-	<link rel="stylesheet" href="../regal/regal/css/style.css">
-	<link rel="shortcut icon" href="../regal/regal/images/favicon.png">
+	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<link rel="stylesheet" href="../regal/vendors/flag-icon-css/css/flag-icon.min.css">
+	<link rel="stylesheet" href="../regal/vendors/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars.css">
+	<link rel="stylesheet" href="../regal/css/style.css">
+	<link rel="shortcut icon" href="../regal/images/favicon.png">
 </head>
 <body>
 	<div>
@@ -102,9 +108,10 @@
                    					<div class="card">
                      					<div class="card-body">
                          					<h2><%=year%>년<%=month+1%>월</h2>
-                       						<p class="card-title">이번달 총 수입</p>
-                         					<h4 class="text-dark font-weight-bold mb-2">1111</h4>
-                       						<img src="../regal/regal/images/faces/smiley.jpg">
+                         					<p class="card-title">이번달 총 수입</p>	
+                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importSum")%>원</h4>	  
+                       						<p class="card-title">이번달 평균 수입</p>
+                       						<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importAvg")%>원</h4>                      
                          					<canvas id="customers"></canvas>
                      					</div>
                    					</div>
@@ -113,9 +120,10 @@
                    					<div class="card">
                      					<div class="card-body">
                         					<h2><%=year%>년<%=month+1%>월</h2>
-                         					<p class="card-title">이번달 총 지출</p>
-                         					<h4 class="text-dark font-weight-bold mb-2">55,543</h4>
-                         					<img src="../regal/regal/images/faces/sad.png">
+                        					<p class="card-title">이번달 총 지출</p>	
+                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportSum")%>원</h4>	  
+                         					<p class="card-title">이번달 평균 지출</p>	
+                         					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportAvg")%>원</h4>	                        					
                          					<canvas id="orders"></canvas>
                      					</div>
                    					</div>

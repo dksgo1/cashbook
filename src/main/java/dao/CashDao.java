@@ -1,13 +1,13 @@
 package dao;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import util.DBUtil;
-import vo.Cash;	
+import vo.Cash;
+import vo.Member;	
 public class CashDao {
 	// 사용자별 년도별 수입/지출 sum, avg
 	public ArrayList<HashMap<String, Object>> selectCashStatsByYear(String memberId) {
@@ -17,8 +17,8 @@ public class CashDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
 			String sql = "SELECT"
 					+ "		YEAR(t2.cashDate) year"
 					+ "		, COUNT(t2.importCash) importCount"
@@ -74,15 +74,15 @@ public class CashDao {
 	}
 	
 	// 사용자별 월별 
-	public ArrayList<HashMap<String, Object>> selectCashStatsByMonth(String memberId, int year) {
-		ArrayList<HashMap<String, Object>> list = null;
+	public HashMap<String, Object> selectCashStatsByMonth(Member member, int year) {
+		HashMap<String, Object> statsList = null;
 		
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		try {
-			Class.forName("org.mariadb.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/cashbook", "root", "java1234");
+			DBUtil dbUtil = new DBUtil();
+			conn = dbUtil.getConnection();
 			String sql = "SELECT"
 					+ "		MONTH(t2.cashDate) month"
 					+ "		, COUNT(t2.importCash) importCount"
@@ -109,20 +109,18 @@ public class CashDao {
 					+ " GROUP BY MONTH(t2.cashDate)"
 					+ " ORDER BY MONTH(t2.cashDate) ASC";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, memberId);
+			stmt.setString(1, member.getMemberId());
 			stmt.setInt(2, year);
 			rs = stmt.executeQuery();
-			list = new  ArrayList<HashMap<String, Object>>();
-			while(rs.next()) {
-				HashMap<String, Object> m = new HashMap<String, Object>();
-				m.put("month", rs.getInt("month"));
-				m.put("importCount", rs.getInt("importCount"));
-				m.put("importSum", rs.getInt("importSum"));
-				m.put("importAvg", rs.getInt("importAvg"));
-				m.put("exportCount", rs.getInt("exportCount"));
-				m.put("exportSum", rs.getInt("exportSum"));
-				m.put("exportAvg", rs.getInt("exportAvg"));
-				list.add(m);
+			if(rs.next()) {
+				statsList = new HashMap<String, Object>();
+				statsList.put("month", rs.getInt("month"));
+				statsList.put("importCount", rs.getInt("importCount"));
+				statsList.put("importSum", rs.getInt("importSum"));
+				statsList.put("importAvg", rs.getInt("importAvg"));
+				statsList.put("exportCount", rs.getInt("exportCount"));
+				statsList.put("exportSum", rs.getInt("exportSum"));
+				statsList.put("exportAvg", rs.getInt("exportAvg"));
 			}
 		} catch(Exception e) {	
 			e.printStackTrace();
@@ -135,7 +133,7 @@ public class CashDao {
 				e.printStackTrace();
 			}
 		}
-		return list;
+		return statsList;
 	}		
 	
 	// 최소, 최대년도

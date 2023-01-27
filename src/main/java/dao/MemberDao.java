@@ -133,7 +133,7 @@ public class MemberDao {
 	public int deleteMember(String memberId, String memberPw) throws Exception{	
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();		
-		String sql = "DELETE FROM MEMBER WHERE member_id=? AND member_pw = PASSWORD(?)";
+		String sql = "DELETE FROM member WHERE member_id=? AND member_pw = PASSWORD(?)";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, memberId);
 		stmt.setString(2, memberPw);

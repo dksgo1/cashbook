@@ -34,8 +34,9 @@
 		System.out.println("로그인 성공");
 		session.setAttribute("loginMember", resultMember);	// session 안에 로그인ID, 이름 저장
 		redirectUrl = "/cash/cashList.jsp";
+		response.sendRedirect(request.getContextPath()+redirectUrl);
 	} else {
-		String msg = URLEncoder.encode("개인정보가 수정되었습니다", "utf-8");
+		String msg = URLEncoder.encode("로그인 실패", "utf-8");
 		response.sendRedirect(request.getContextPath()+redirectUrl);
 	}
 

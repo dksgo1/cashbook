@@ -25,15 +25,15 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="../regal/regal/vendors/mdi/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/feather/feather.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/base/vendor.bundle.base.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
-	<link rel="stylesheet" href="../regal/regal/vendors/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
-	<link rel="stylesheet" href="../regal/regal/vendors/jquery-bar-rating/fontawesome-stars.css">
-	<link rel="stylesheet" href="../regal/regal/css/style.css">
-	<link rel="shortcut icon" href="../regal/regal/images/favicon.png" />
+	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
+	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+	<link rel="stylesheet" href="../regal/vendors/flag-icon-css/css/flag-icon.min.css"/>
+	<link rel="stylesheet" href="../regal/vendors/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars.css">
+	<link rel="stylesheet" href="../regal/css/style.css">
+	<link rel="shortcut icon" href="../regal/images/favicon.png" />
 <title>고객센터</title>
 </head>
 <body>
