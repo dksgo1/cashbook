@@ -36,7 +36,7 @@
 			year += 1;
 		}
 	}
-	// 출력하고자 하는 년,월과 월의1일의 요일(일요일 1, 월요일 2, 화요일 3, ..........토요일 7)
+	// 출력하고자 하는 년,월과 월의1일의 요일(일요일 1, 월요일 2, 화요일 3, .........토요일 7)
 	Calendar targetDate = Calendar.getInstance();
 	targetDate.set(Calendar.YEAR, year);
 	targetDate.set(Calendar.MONTH, month);
