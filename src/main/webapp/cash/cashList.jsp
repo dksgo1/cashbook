@@ -10,11 +10,10 @@
 		return;
 	}
 	
-	
 	// Controller : session, request
 	//session에 지정된 멤버(현재 로그인 사용자)
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	String memberId = request.getParameter("memberId");
+
 	// request 년 + 월 넘어와야 함
 	int year = 0;
 	int month = 0;
@@ -66,9 +65,12 @@
 	// Model호출 : 월 평균 수입 지출 합계
 	Member member = new Member();
 	member.setMemberId(loginMember.getMemberId());
+	// System.out.println(year);
+	// System.out.println(loginMember.getMemberId());
 	
 	HashMap<String, Object> statsList = cashDao.selectCashStatsByMonth(member, year);
-	System.out.println(statsList);
+	// System.out.println(statsList);
+
 	// view : 달력출력 + 일별 cash 목록 출력
 %>
 <!DOCTYPE html>
@@ -108,11 +110,17 @@
                    					<div class="card">
                      					<div class="card-body">
                          					<h2><%=year%>년<%=month+1%>월</h2>
-                         					<p class="card-title">이번달 총 수입</p>	
-                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importSum")%>원</h4>	  
-                       						<p class="card-title">이번달 평균 수입</p>
-                       						<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importAvg")%>원</h4>                      
-                         					<canvas id="customers"></canvas>
+                         					<%
+                         						if(statsList != null) {
+                         					%>
+	                         					<p class="card-title">이번달 총 수입</p>
+	                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importSum")%>원</h4>	  
+	                       						<p class="card-title">이번달 평균 수입</p>
+	                       						<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importAvg")%>원</h4>                      
+	                         					<canvas id="customers"></canvas>
+	                         				<%
+                         						}
+	                         				%>	
                      					</div>
                    					</div>
                					</div>
@@ -120,11 +128,17 @@
                    					<div class="card">
                      					<div class="card-body">
                         					<h2><%=year%>년<%=month+1%>월</h2>
-                        					<p class="card-title">이번달 총 지출</p>	
-                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportSum")%>원</h4>	  
-                         					<p class="card-title">이번달 평균 지출</p>	
-                         					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportAvg")%>원</h4>	                        					
-                         					<canvas id="orders"></canvas>
+                       						<%
+                         						if(statsList != null) {
+                         					%>
+	                        					<p class="card-title">이번달 총 지출</p>	
+	                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportSum")%>원</h4>	  
+	                         					<p class="card-title">이번달 평균 지출</p>	
+	                         					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportAvg")%>원</h4>	                        					
+	                         					<canvas id="orders"></canvas>
+	                         				<%
+                         						}
+	                         				%>	
                      					</div>
                    					</div>
               					</div>
@@ -140,6 +154,13 @@
                          					<p>월 수입과 지출을 확인해보세요</p>
 											<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month-1%>" class="btn btn-outline-secondary btn-sm">&#8701;이전달</a>
 											<a href="<%=request.getContextPath()%>/cash/cashList.jsp?year=<%=year%>&month=<%=month+1%>" class="btn btn-outline-secondary btn-sm">다음달&#8702;</a>
+											<%
+												if(loginMember.getMemberLevel() > 0) {
+											%>                       					
+                       								<a href="<%=request.getContextPath()%>/admin/categoryList.jsp" class="btn btn-inverse-info for inverse buttons btn-sm btn-block btn-outline-dark">카테고리관리</a>	
+                       						<%
+												}
+                       						%>
                        					</div>
 				                  		<table class="table table-header-bg table-bordered">
 												<tr>

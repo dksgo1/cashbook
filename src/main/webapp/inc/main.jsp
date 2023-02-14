@@ -8,21 +8,21 @@
 %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
-	<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
-	<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
-	<link rel="stylesheet" href="../regal/vendors/flag-icon-css/css/flag-icon.min.css">
-	<link rel="stylesheet" href="../regal/vendors/font-awesome/css/font-awesome.min.css">
-	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
-	<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars.css">
-	<link rel="stylesheet" href="../regal/css/style.css">
-	<link rel="shortcut icon" href="../regal/images/favicon.png">
-</head>
-<body>
+	<head>
+	<meta charset="UTF-8">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="../regal/vendors/mdi/css/materialdesignicons.min.css">
+		<link rel="stylesheet" href="../regal/vendors/feather/feather.css">
+		<link rel="stylesheet" href="../regal/vendors/base/vendor.bundle.base.css">
+		<link rel="stylesheet" href="../regal/vendors/flag-icon-css/css/flag-icon.min.css">
+		<link rel="stylesheet" href="../regal/vendors/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars-o.css">
+		<link rel="stylesheet" href="../regal/vendors/jquery-bar-rating/fontawesome-stars.css">
+		<link rel="stylesheet" href="../regal/css/style.css">
+		<link rel="shortcut icon" href="../regal/images/favicon.png">
+	</head>
+	<body>
    		<!-- partial -->
    	
      		<!-- partial:partials/_sidebar.html -->
@@ -127,6 +127,21 @@
          			</li>
        			</ul>
    			</nav>
- 
-</body>
+			<script src="../vendors/base/vendor.bundle.base.js"></script>
+			<!-- endinject -->
+			<!-- inject:js -->
+			<script src="../js/off-canvas.js"></script>
+			<script src="../js/hoverable-collapse.js"></script>
+			<script src="../js/template.js"></script>
+			<!-- endinject -->
+			<!-- plugin js for this page -->
+			<script src="../vendors/typeahead.js/typeahead.bundle.min.js"></script>
+			<script src="../vendors/select2/select2.min.js"></script>
+			<!-- End plugin js for this page -->
+			<!-- Custom js for this page-->
+			<script src="../js/file-upload.js"></script>
+			<script src="../js/typeahead.js"></script>
+			<script src="../js/select2.js"></script>
+			<!-- End custom js for this page-->
+	</body>
 </html>

@@ -96,6 +96,7 @@
 												<%
 													}
 												%>
+												<a href="<%=request.getContextPath()%>/admin/noticeList.jsp" class="btn btn-inverse-info for inverse buttons btn-sm btn-block btn-outline-dark">공지관리</a>
 											</table>
                          					<canvas id="customers"></canvas>
                      					</div>
@@ -122,7 +123,8 @@
 												<%
 													}
 												%>
-									</table>	
+												<a href="<%=request.getContextPath()%>/admin/memberList.jsp" class="btn btn-inverse-info for inverse buttons btn-sm btn-block btn-outline-dark">멤버관리(목록, 레벨수정, 강제탈퇴)</a>
+											</table>	
                          					<canvas id="orders"></canvas>
                      					</div>
                    					</div>
@@ -154,7 +156,8 @@
 											<%
 												}
 											%>
-									</table>											 						
+											<a href="<%=request.getContextPath()%>/admin/helpListAll.jsp" class="btn btn-inverse-info for inverse buttons btn-sm btn-block btn-outline-dark">(관리자)고객센터</a>
+										</table>											 						
 									</div>
 								</div>
 							</div>
