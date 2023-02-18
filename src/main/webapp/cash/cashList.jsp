@@ -69,7 +69,15 @@
 	// System.out.println(loginMember.getMemberId());
 	
 	HashMap<String, Object> statsList = cashDao.selectCashStatsByMonth(member, year);
-	// System.out.println(statsList);
+	System.out.println(statsList);
+	
+	int targetMonth = month + 1; // 해당 월은 0부터 시작하기 때문에 1을 더해서 월 값을 맞춤
+
+	String importSumKey = targetMonth + "importSum";
+	String importAvgKey = targetMonth + "importAvg";
+	String exportSumKey = targetMonth + "exportSum";
+	String exportAvgKey = targetMonth + "exportAvg";
+	
 
 	// view : 달력출력 + 일별 cash 목록 출력
 %>
@@ -114,9 +122,9 @@
                          						if(statsList != null) {
                          					%>
 	                         					<p class="card-title">이번달 총 수입</p>
-	                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importSum")%>원</h4>	  
+	                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get(importSumKey)%>원</h4>	  
 	                       						<p class="card-title">이번달 평균 수입</p>
-	                       						<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("importAvg")%>원</h4>                      
+	                       						<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get(importAvgKey)%>원</h4>                      
 	                         					<canvas id="customers"></canvas>
 	                         				<%
                          						}
@@ -132,9 +140,9 @@
                          						if(statsList != null) {
                          					%>
 	                        					<p class="card-title">이번달 총 지출</p>	
-	                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportSum")%>원</h4>	  
+	                        					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get(exportSumKey)%>원</h4>	  
 	                         					<p class="card-title">이번달 평균 지출</p>	
-	                         					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get("exportAvg")%>원</h4>	                        					
+	                         					<h4 class="text-dark font-weight-bold mb-2"><%=statsList.get(exportAvgKey)%>원</h4>	                        					
 	                         					<canvas id="orders"></canvas>
 	                         				<%
                          						}
